@@ -100,14 +100,15 @@
         app:layout_constraintTop_toBottomOf="@+id/et_password"
         tools:ignore="HardcodedText" />
 
-   <android.widget.Button
-       android:id="@+id/btn_signup"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_constraintBottom_toBottomOf="parent"
-       android:text="Sign Up"
-       android:textStyle="normal"
-       android:textSize="20dp"
-       android:background="@drawable/gradient_button"
-       tools:ignore="HardcodedText" />
+    <android.widget.Button
+        android:id="@+id/btn_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_button"
+        android:text="Sign Up"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="HardcodedText,DuplicateSpeakableTextCheck,VisualLintButtonSize"
+        tools:layout_editor_absoluteX="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
