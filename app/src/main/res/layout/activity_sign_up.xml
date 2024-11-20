@@ -104,10 +104,11 @@
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_button"
+        android:background="@drawable/hover_btn"
         android:text="Sign Up"
         android:textSize="20sp"
         android:textStyle="normal"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="HardcodedText,DuplicateSpeakableTextCheck,VisualLintButtonSize"
         tools:layout_editor_absoluteX="16dp" />
