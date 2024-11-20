@@ -2,12 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="coral">#ff7f50</color>
-    <color name="salmon">#ff8f66</color>
-    <color name="peachOrange">#ff9f7c</color>
-    <color name="lightCoral">#ffaf92</color>
-    <color name="apricot">#ffbfa8</color>
-    <color name="melon">#ffcfbd</color>
-    <color name="palePeach">#ffdfd3</color>
-    <color name="blushPink">#ffefe9</color>
+<!--    <color name="coral">#ff7f50</color>-->
+<!--    <color name="salmon">#ff8f66</color>-->
+<!--    <color name="peachOrange">#ff9f7c</color>-->
+<!--    <color name="lightCoral">#ffaf92</color>-->
+<!--    <color name="apricot">#ffbfa8</color>-->
+<!--    <color name="melon">#ffcfbd</color>-->
+<!--    <color name="palePeach">#ffdfd3</color>-->
+<!--    <color name="blushPink">#ffefe9</color>-->
+    <color name="darkJungleGreen">#031716</color>
+    <color name="richBlackGreenishTint">#032f30</color>
+    <color name="deepAquamarine">#0a7075</color>
+    <color name="tealBlue">#0c969c</color>
+    <color name="lightSteelTeal">#6ba3b3</color>
+    <color name="darkSlateBlue">#274d60</color>
+
 </resources>
