@@ -8,10 +8,10 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/tv_sign_up"
+        android:id="@+id/tv_sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SIGN UP"
+        android:text="SIGN IN"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,19 +21,6 @@
         tools:ignore="HardcodedText" />
 
     <EditText
-        android:id="@+id/et_full_name"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:autofillHints=""
-        android:hint="Full name"
-        android:inputType="textPersonName"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sign_up"
-        android:layout_marginTop="20dp"
-        android:padding="2sp"
-        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
-
-    <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -41,37 +28,10 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@+id/et_full_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sign_in"
         android:layout_marginTop="20dp"
         android:padding="2sp"
         tools:ignore="HardcodedText,VisualLintTextFieldSize" />
-
-    <EditText
-        android:id="@+id/et_birth_date"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:autofillHints=""
-        android:hint="Day of birth"
-        android:inputType="date"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@+id/et_email"
-        android:layout_marginTop="20dp"
-        android:padding="2sp"
-        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
-
-    <EditText
-        android:id="@+id/et_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:background="@drawable/edittext_background"
-        android:hint="Phone number"
-        android:inputType="phone"
-        android:padding="2sp"
-        app:layout_constraintTop_toBottomOf="@+id/et_birth_date"
-        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck"
-        tools:layout_editor_absoluteX="16dp" />
 
     <EditText
         android:id="@+id/et_password"
@@ -80,20 +40,20 @@
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:background="@drawable/edittext_background"
-        android:hint="Password"
+        android:hint="Phone number"
         android:inputType="textPassword"
         android:padding="2sp"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone_number"
+        app:layout_constraintTop_toBottomOf="@+id/et_email"
         tools:ignore="HardcodedText,VisualLintTextFieldSize"
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
-        android:id="@+id/tv_login_prompt"
+        android:id="@+id/tv_signup_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
-        android:text="Already have an account? Login here!"
+        android:text="Don't have account? Sign Up here!"
         android:textColor="#2962FF"
         android:textSize="14sp"
         android:textStyle="italic"
@@ -101,16 +61,30 @@
         app:layout_constraintTop_toBottomOf="@+id/et_password"
         tools:ignore="HardcodedText" />
 
+    <TextView
+        android:id="@+id/tv_forgot_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:text="Forgot password!"
+        android:textColor="#2962FF"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
     <android.widget.Button
-        android:id="@+id/btn_signup"
+        android:id="@+id/btn_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/hover_btn"
-        android:text="Sign Up"
+        android:text="Sign In"
         android:textSize="20sp"
         android:textStyle="normal"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="HardcodedText,DuplicateSpeakableTextCheck,VisualLintButtonSize"
         tools:layout_editor_absoluteX="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
