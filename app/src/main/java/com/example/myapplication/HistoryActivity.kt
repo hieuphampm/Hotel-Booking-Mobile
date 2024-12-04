@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -15,7 +16,7 @@ class HistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.history_screen)
 
-        val recyclerView: RecyclerView = findViewById(R.id.history_recycler_view)
+        val recyclerView: RecyclerView = findViewById(R.id.main)
 
         bookingHistoryList = generateDummyBookingHistory()
 
@@ -30,5 +31,9 @@ class HistoryActivity : AppCompatActivity() {
             Reservation("Standard Room", "01/11/2023", "05/11/2023", "Jane Smith"),
             Reservation("Suite Room", "10/10/2023", "12/10/2023", "Alice Johnson")
         )
+    }
+
+    class Reservation(s: String, s1: String, s2: String, s3: String) {
+
     }
 }

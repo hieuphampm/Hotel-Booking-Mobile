@@ -5,6 +5,7 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 
 class FindRoomActivity : AppCompatActivity() {
 
@@ -54,4 +55,8 @@ class FindRoomActivity : AppCompatActivity() {
             Room("Single Room", "$80 per night")
         )
     }
+}
+
+class Room {
+
 }
