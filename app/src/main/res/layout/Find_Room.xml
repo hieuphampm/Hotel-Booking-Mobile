@@ -12,15 +12,15 @@
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search for a room"
-        android:padding="12dp"
         android:background="@drawable/search_bar_bg"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="8dp"
+        android:hint="Search for a room"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:padding="12dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        android:inputType="text"
-        android:imeOptions="actionSearch"
         tools:ignore="Autofill,HardcodedText" />
 
     <LinearLayout
