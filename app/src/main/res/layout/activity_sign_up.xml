@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/tealBlue"
         android:layout_marginTop="20dp"
         tools:ignore="HardcodedText" />
 
@@ -25,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:autofillHints=""
-        android:hint="Full name"
+        android:hint=" Full name"
         android:inputType="textPersonName"
         android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@+id/tv_sign_up"
@@ -38,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:autofillHints=""
-        android:hint="Email"
+        android:hint=" Email"
         android:inputType="textEmailAddress"
         android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@+id/et_full_name"
@@ -51,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:autofillHints=""
-        android:hint="Day of birth"
+        android:hint=" Day of birth"
         android:inputType="date"
         android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@+id/et_email"
@@ -66,7 +67,7 @@
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:background="@drawable/edittext_background"
-        android:hint="Phone number"
+        android:hint=" Phone number"
         android:inputType="phone"
         android:padding="2sp"
         app:layout_constraintTop_toBottomOf="@+id/et_birth_date"
@@ -80,7 +81,7 @@
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:background="@drawable/edittext_background"
-        android:hint="Password"
+        android:hint=" Password"
         android:inputType="textPassword"
         android:padding="2sp"
         app:layout_constraintTop_toBottomOf="@+id/et_phone_number"
@@ -111,6 +112,7 @@
         android:textStyle="normal"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
         tools:ignore="HardcodedText,DuplicateSpeakableTextCheck,VisualLintButtonSize"
-        tools:layout_editor_absoluteX="16dp" />
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

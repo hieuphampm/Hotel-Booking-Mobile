@@ -5,97 +5,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PaymentActivity"
-    android:background="@color/darkJungleGreen">
+    tools:context=".PaymentActivity">
 
     <TextView
         android:id="@+id/payment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Payment"
-        android:textSize="24sp"
+        android:text="PAYMENT"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/tealBlue"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/card_number"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Card Number"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint=" Card Number"
         android:textColor="@color/tealBlue"
         android:textColorHint="@color/lightSteelTeal"
-        android:backgroundTint="@color/tealBlue"
+        android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@id/payment_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginEnd="16dp"
+        tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <EditText
         android:id="@+id/cardholder_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Cardholder Name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint=" Cardholder Name"
         android:textColor="@color/tealBlue"
         android:textColorHint="@color/lightSteelTeal"
-        android:backgroundTint="@color/tealBlue"
+        android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@id/card_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginEnd="16dp"
+        tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <EditText
         android:id="@+id/expiry_date"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="MM/YY"
+        android:layout_height="48dp"
+        android:hint=" MM/YY"
         android:textColor="@color/tealBlue"
         android:textColorHint="@color/lightSteelTeal"
-        android:backgroundTint="@color/tealBlue"
+        android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@id/cardholder_name"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@id/cvv" />
+        app:layout_constraintEnd_toStartOf="@id/cvv"
+        tools:ignore="Autofill,HardcodedText,TextFields"/>
 
     <EditText
         android:id="@+id/cvv"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="CVV"
+        android:layout_height="48dp"
+        android:hint=" CVV"
         android:inputType="number"
         android:textColor="@color/tealBlue"
         android:textColorHint="@color/lightSteelTeal"
-        android:backgroundTint="@color/tealBlue"
+        android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@id/cardholder_name"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintStart_toEndOf="@id/expiry_date"
-        tools:ignore="HardcodedText" />
+        tools:ignore="Autofill,HardcodedText,TextFields" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/confirm_payment_button"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/hover_btn"
         android:text="Confirm Payment"
-        android:backgroundTint="@color/deepAquamarine"
-        android:textColor="@color/darkJungleGreen"
-        android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@id/expiry_date"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        tools:ignore="HardcodedText,DuplicateSpeakableTextCheck,VisualLintButtonSize"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

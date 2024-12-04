@@ -18,5 +18,11 @@ class SignInActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
+
+        val tvForgotPrompt: TextView = findViewById(R.id.tv_forgot_prompt)
+        tvForgotPrompt.setOnClickListener {
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
