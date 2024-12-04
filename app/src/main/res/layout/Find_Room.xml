@@ -22,6 +22,7 @@
         android:imeOptions="actionSearch" />
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -29,6 +30,7 @@
 
         <Button
             android:id="@+id/filter_price"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,17 +41,19 @@
 
         <Button
             android:id="@+id/filter_availability"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="Availability"
+            android:text="@string/availability"
             android:backgroundTint="@color/primary"
             android:textColor="@color/white"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/filter_features"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
