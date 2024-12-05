@@ -22,7 +22,7 @@ class FindRoomActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_find_room)
+        setContentView(R.layout.activity_all_room)
 
         // Initialize UI components
         searchBar = findViewById(R.id.search_bar)
