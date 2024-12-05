@@ -15,7 +15,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val btnSignIn = findViewById<Button>(R.id.btnSignIn)
+        val btnSignIn = findViewById<Button>(R.id.main)
         btnSignIn.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
@@ -45,4 +45,8 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+}
+
+class RoomDetailActivity {
+
 }

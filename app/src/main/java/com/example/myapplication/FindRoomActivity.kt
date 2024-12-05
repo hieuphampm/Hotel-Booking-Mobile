@@ -38,7 +38,7 @@ class FindRoomActivity : AppCompatActivity() {
 
         // Load dummy data
         rooms.addAll(getDummyRooms())
-        roomAdapter.submitList(rooms)
+        roomAdapter.updateRoomList(rooms)
 
         // Search bar listener
         searchBar.addTextChangedListener(object : TextWatcher {
