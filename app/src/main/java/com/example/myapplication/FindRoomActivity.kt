@@ -61,4 +61,16 @@ class FindRoomActivity : AppCompatActivity() {
     private fun filterRooms(query: String) {
     }
 
+<<<<<<< Updated upstream
+=======
+    private fun getDummyRooms(): List<Room> {
+        return listOf(
+            Room("Room 1", 100.0, true, listOf("Wi-Fi", "Air Conditioning")),
+            Room("Room 2", 150.0, false, listOf("Wi-Fi", "Pool")),
+            Room("Room 3", 120.0, true, listOf("Wi-Fi", "TV")),
+            Room("Room 4", 200.0, true, listOf("Wi-Fi", "Gym"))
+        )
+    }
+
+>>>>>>> Stashed changes
 }
