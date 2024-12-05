@@ -1,62 +1,60 @@
-package com.example.hotelapp
+package com.example.myapplication;
 
 import android.os.Bundle
-import android.widget.SearchView
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
+import com.example.app.databinding.ActivityFindRoomBinding
+import com.example.myapplication.databinding.ActivityFindRoomBinding
 
 class FindRoomActivity : AppCompatActivity() {
 
-    private lateinit var roomAdapter: RoomAdapter
-    private lateinit var roomList: MutableList<Room>
-    private lateinit var searchView: SearchView
+    private lateinit var binding: ActivityFindRoomBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.find_room)
+        binding = ActivityFindRoomBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
-        searchView = findViewById(R.id.search_view)
-
-        roomList = generateDummyRooms()
-
-        roomAdapter = RoomAdapter(roomList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = roomAdapter
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let { filterRooms(it) }
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let { filterRooms(it) }
-                return false
+        // Event: Handle search bar input
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val query = s.toString()
+                // Perform search with 'query'
+                Toast.makeText(this@FindRoomActivity, "Searching for: $query", Toast.LENGTH_SHORT).show()
             }
         })
-    }
 
-    private fun filterRooms(query: String) {
-        val filteredList = roomList.filter {
-            it.name.contains(query, ignoreCase = true)
+        // Event: Handle Price filter click
+        binding.filterPrice.setOnClickListener {
+            Toast.makeText(this, "Filter by Price", Toast.LENGTH_SHORT).show()
         }
-        roomAdapter.updateList(filteredList)
+
+        // Event: Handle Availability filter click
+        binding.filterAvailability.setOnClickListener {
+            Toast.makeText(this, "Filter by Availability", Toast.LENGTH_SHORT).show()
+        }
+
+        // Event: Handle Features filter click
+        binding.filterFeatures.setOnClickListener {
+            Toast.makeText(this, "Filter by Features", Toast.LENGTH_SHORT).show()
+        }
+
+        // Initialize RecyclerView
+        setupRecyclerView()
     }
 
-    private fun generateDummyRooms(): MutableList<Room> {
-        return mutableListOf(
-            Room("Deluxe Room", "$150 per night"),
-            Room("Suite Room", "$250 per night"),
-            Room("Standard Room", "$100 per night"),
-            Room("Family Room", "$200 per night"),
-            Room("Single Room", "$80 per night")
-        )
+    private fun setupRecyclerView() {
+        val recyclerView: RecyclerView = binding.roomListRecyclerview
+        recyclerView.adapter = RoomListAdapter(getDummyRooms())
+        recyclerView.setHasFixedSize(true)
     }
-}
 
-class Room {
-
+    private fun getDummyRooms(): List<String> {
+        return listOf("Room 1", "Room 2", "Room 3", "Room 4")
+    }
 }

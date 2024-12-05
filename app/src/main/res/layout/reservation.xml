@@ -91,7 +91,7 @@
             android:text="Select Time"
             android:textSize="15sp"
             android:textStyle="normal"
-            android:textColor="@color/white"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 </ScrollView>

@@ -13,7 +13,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home)
+        setContentView(R.layout.activity_home)
 
         val btnSignIn = findViewById<Button>(R.id.btnSignIn)
         btnSignIn.setOnClickListener {

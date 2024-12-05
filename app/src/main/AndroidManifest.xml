@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="true" />
@@ -23,6 +24,9 @@
             android:exported="true" />
         <activity
             android:name=".SignUpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".FindRoomActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
