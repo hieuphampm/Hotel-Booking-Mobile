@@ -8,8 +8,6 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.RoomAdapter
-import com.example.myapplication.Room
 
 class FindRoomActivity : AppCompatActivity() {
 
@@ -20,21 +18,29 @@ class FindRoomActivity : AppCompatActivity() {
     private lateinit var roomListRecyclerView: RecyclerView
 
     private lateinit var roomAdapter: RoomAdapter
+    private val rooms = mutableListOf<Room>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_room)
 
+        // Initialize UI components
         searchBar = findViewById(R.id.search_bar)
         filterPriceButton = findViewById(R.id.filter_price)
         filterAvailabilityButton = findViewById(R.id.filter_availability)
         filterFeaturesButton = findViewById(R.id.filter_features)
         roomListRecyclerView = findViewById(R.id.room_list_recyclerview)
 
+        // Setup RecyclerView and Adapter
         roomListRecyclerView.layoutManager = LinearLayoutManager(this)
         roomAdapter = RoomAdapter()
         roomListRecyclerView.adapter = roomAdapter
 
+        // Load dummy data
+        rooms.addAll(getDummyRooms())
+        roomAdapter.submitList(rooms)
+
+        // Search bar listener
         searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 filterRooms(s.toString())
@@ -45,6 +51,7 @@ class FindRoomActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
+        // Filter button listeners
         filterPriceButton.setOnClickListener {
             filterRooms("price")
         }
@@ -59,10 +66,23 @@ class FindRoomActivity : AppCompatActivity() {
     }
 
     private fun filterRooms(query: String) {
+        val filteredRooms = when {
+            query.equals("price", ignoreCase = true) -> {
+                rooms.sortedBy { it.price }
+            }
+            query.equals("availability", ignoreCase = true) -> {
+                rooms.filter { it.isAvailable }
+            }
+            query.equals("features", ignoreCase = true) -> {
+                rooms.filter { "Wi-Fi" in it.features }
+            }
+            else -> {
+                rooms.filter { it.name.contains(query, ignoreCase = true) }
+            }
+        }
+        roomAdapter.submitList(filteredRooms)
     }
 
-<<<<<<< Updated upstream
-=======
     private fun getDummyRooms(): List<Room> {
         return listOf(
             Room("Room 1", 100.0, true, listOf("Wi-Fi", "Air Conditioning")),
@@ -71,6 +91,4 @@ class FindRoomActivity : AppCompatActivity() {
             Room("Room 4", 200.0, true, listOf("Wi-Fi", "Gym"))
         )
     }
-
->>>>>>> Stashed changes
 }
