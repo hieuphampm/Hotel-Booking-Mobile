@@ -7,81 +7,168 @@
     android:layout_height="match_parent"
     tools:context=".RoomDetailsActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/card_background"
-        android:layout_margin="16dp"
-        android:elevation="4dp"
-        tools:ignore="MissingConstraints"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintVertical_bias="0.0">
 
-        <ImageView
-            android:id="@+id/room_image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/sample_room_image"
-            android:layout_marginBottom="16dp"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/room_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Room Name"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginBottom="8dp"
-            tools:ignore="HardcodedText" />
+            android:layout_margin="16dp"
+            android:background="@drawable/card_background"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/room_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Price: $100 per night"
-            android:textSize="16sp"
-            android:textColor="#fff"
-            android:layout_marginBottom="16dp"
-            tools:ignore="HardcodedText" />
+            <ImageView
+                android:id="@+id/room_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sample_room_image"
+                tools:ignore="ContentDescription" />
 
-        <TextView
-            android:id="@+id/room_features_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Features:"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginBottom="8dp"
-            tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/room_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Room Name"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/room_features"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Free WiFi\n• Air Conditioning\n• King-Size Bed"
-            android:textSize="14sp"
-            android:textColor="#fff"
-            android:lineSpacingExtra="4dp"
-            android:layout_marginBottom="24dp"
-            tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/room_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Price: $100 per night"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
 
-        <Button
-            android:id="@+id/book_now_button"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Book Now"
-            android:textSize="18sp"
-            android:textColor="#FFFFFF"
-            android:textAllCaps="false"
-            android:background="@drawable/hover_btn"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            tools:ignore="HardcodedText" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/room_description_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Description:"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/room_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:lineSpacingExtra="4dp"
+                android:text="A spacious room with modern decor, offering all essential amenities for a comfortable stay."
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/room_features_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Features:"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/room_features"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:lineSpacingExtra="4dp"
+                android:text="• Free WiFi\n• Air Conditioning\n• King-Size Bed"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <RatingBar
+                android:id="@+id/room_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:numStars="5"
+                android:rating="4.5"
+                android:stepSize="0.5"
+
+            <TextView
+                android:id="@+id/reviews_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Customer Reviews:"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reviews_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp" />
+
+            <CalendarView
+                android:id="@+id/calendar_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/book_now_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/hover_btn"
+                android:text="Book Now"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/add_to_favorites_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/hover_btn"
+                android:text="Add to Favorites"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/contact_support_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/hover_btn"
+                android:text="Contact Support"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
