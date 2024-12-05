@@ -1,63 +1,64 @@
-package com.example.myapplication;
+package com.example.myapplication
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Toast
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.com.example.myapplication.RoomListAdapter
-import com.example.myapplication.databinding.ActivityFindRoomBinding
+import com.example.myapplication.RoomAdapter
+import com.example.myapplication.Room
 
 class FindRoomActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityFindRoomBinding
+    private lateinit var searchBar: EditText
+    private lateinit var filterPriceButton: Button
+    private lateinit var filterAvailabilityButton: Button
+    private lateinit var filterFeaturesButton: Button
+    private lateinit var roomListRecyclerView: RecyclerView
+
+    private lateinit var roomAdapter: RoomAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFindRoomBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_find_room)
 
-        // Event: Handle search bar input
-        binding.searchBar.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        searchBar = findViewById(R.id.search_bar)
+        filterPriceButton = findViewById(R.id.filter_price)
+        filterAvailabilityButton = findViewById(R.id.filter_availability)
+        filterFeaturesButton = findViewById(R.id.filter_features)
+        roomListRecyclerView = findViewById(R.id.room_list_recyclerview)
+
+        roomListRecyclerView.layoutManager = LinearLayoutManager(this)
+        roomAdapter = RoomAdapter()
+        roomListRecyclerView.adapter = roomAdapter
+
+        searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val query = s.toString()
-                // Perform search with 'query'
-                Toast.makeText(this@FindRoomActivity, "Searching for: $query", Toast.LENGTH_SHORT).show()
+                filterRooms(s.toString())
             }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        // Event: Handle Price filter click
-        binding.filterPrice.setOnClickListener {
-            Toast.makeText(this, "Filter by Price", Toast.LENGTH_SHORT).show()
+        filterPriceButton.setOnClickListener {
+            filterRooms("price")
         }
 
-        // Event: Handle Availability filter click
-        binding.filterAvailability.setOnClickListener {
-            Toast.makeText(this, "Filter by Availability", Toast.LENGTH_SHORT).show()
+        filterAvailabilityButton.setOnClickListener {
+            filterRooms("availability")
         }
 
-        // Event: Handle Features filter click
-        binding.filterFeatures.setOnClickListener {
-            Toast.makeText(this, "Filter by Features", Toast.LENGTH_SHORT).show()
+        filterFeaturesButton.setOnClickListener {
+            filterRooms("features")
         }
-
-        // Initialize RecyclerView
-        setupRecyclerView()
     }
 
-    private fun setupRecyclerView() {
-        val recyclerView: RecyclerView = binding.roomListRecyclerview
-        recyclerView.adapter = RoomListAdapter(
-            getDummyRooms(),
-        )
-        recyclerView.setHasFixedSize(true)
+    private fun filterRooms(query: String) {
     }
 
-    private fun getDummyRooms(): List<String> {
-        return listOf("Room 1", "Room 2", "Room 3", "Room 4")
-    }
 }
-
