@@ -7,6 +7,6 @@ data class Room(
     val price: Double,
     val isAvailable: Boolean
 ) {
-    val features: CharSequence?
-    val availability: CharSequence?
+    val features: CharSequence? = null
+    val availability: CharSequence? = null
 }
