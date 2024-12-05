@@ -21,9 +21,9 @@ class ReservationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.reservation_screen)
+        setContentView(R.layout.activity_reservation)
 
-        selectedRoomTextView = findViewById(R.id.selected_room)
+        selectedRoomTextView = findViewById(R.id.room_name)
         startDateTextView = findViewById(R.id.start_date)
         endDateTextView = findViewById(R.id.end_date)
         guestNameEditText = findViewById(R.id.guest_name)
