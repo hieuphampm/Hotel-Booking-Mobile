@@ -24,7 +24,8 @@
         android:textColorHint="@color/gray"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
 
     <!-- Filter Buttons -->
     <LinearLayout
@@ -46,7 +47,8 @@
             android:text="Price"
             android:backgroundTint="@color/primary"
             android:textColor="@color/white"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            tools:ignore="ButtonStyle,HardcodedText" />
 
         <Button
             android:id="@+id/filter_availability"
@@ -57,7 +59,8 @@
             android:text="Availability"
             android:backgroundTint="@color/primary"
             android:textColor="@color/white"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            tools:ignore="ButtonStyle,HardcodedText" />
 
         <Button
             android:id="@+id/filter_features"
@@ -68,7 +71,8 @@
             android:text="Features"
             android:backgroundTint="@color/primary"
             android:textColor="@color/white"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            tools:ignore="ButtonStyle,HardcodedText" />
     </LinearLayout>
 
     <!-- RecyclerView for Room List -->
