@@ -6,7 +6,7 @@ import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.app.databinding.ActivityFindRoomBinding
+import com.example.myapplication.com.example.myapplication.RoomListAdapter
 import com.example.myapplication.databinding.ActivityFindRoomBinding
 
 class FindRoomActivity : AppCompatActivity() {
@@ -50,7 +50,9 @@ class FindRoomActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val recyclerView: RecyclerView = binding.roomListRecyclerview
-        recyclerView.adapter = RoomListAdapter(getDummyRooms())
+        recyclerView.adapter = RoomListAdapter(
+            getDummyRooms(),
+        )
         recyclerView.setHasFixedSize(true)
     }
 
@@ -58,3 +60,4 @@ class FindRoomActivity : AppCompatActivity() {
         return listOf("Room 1", "Room 2", "Room 3", "Room 4")
     }
 }
+
