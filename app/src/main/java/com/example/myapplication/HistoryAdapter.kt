@@ -16,9 +16,9 @@ class HistoryAdapter(private var historyList: List<HistoryActivity.Reservation>)
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val reservation = historyList[position]
         holder.roomName.text = reservation.roomName
-        holder.startDate.text = reservation.startDate
+        holder.startDate.text = reservation.roomName
         holder.endDate.text = reservation.endDate
-        holder.guestName.text = reservation.guestName
+        holder.guestName.text = reservation.endDate
     }
 
     override fun getItemCount(): Int {
@@ -36,4 +36,13 @@ class HistoryAdapter(private var historyList: List<HistoryActivity.Reservation>)
         val endDate: TextView = itemView.findViewById(R.id.end_date)
         val guestName: TextView = itemView.findViewById(R.id.guest_name)
     }
+}
+
+class HistoryActivity {
+    class Reservation {
+
+        val endDate: CharSequence?
+        val roomName: CharSequence?
+    }
+
 }
