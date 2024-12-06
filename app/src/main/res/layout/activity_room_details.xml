@@ -23,9 +23,9 @@
             android:id="@+id/room_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
             android:scaleType="centerCrop"
             android:src="@drawable/sample_room_image"
-            android:layout_marginBottom="16dp"
             tools:ignore="ContentDescription" />
 
         <TextView
