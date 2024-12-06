@@ -10,5 +10,8 @@ data class Room(
     val price: Double,
     val availability: Boolean,
     val features: List<String>
+        get() {
+            TODO()
+        }
 )
 
