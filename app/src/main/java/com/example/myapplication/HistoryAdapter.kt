@@ -41,8 +41,8 @@ class HistoryAdapter(private var historyList: List<HistoryActivity.Reservation>)
 class HistoryActivity {
     class Reservation {
 
-        val endDate: CharSequence?
-        val roomName: CharSequence?
+        val endDate: CharSequence? = null
+        val roomName: CharSequence? = null
     }
 
 }
