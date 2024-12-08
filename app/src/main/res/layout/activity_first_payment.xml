@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    android:padding="16dp"
+    tools:context=".FirstPaymentActivity">
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hotel Thiên Hương"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/tealBlue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Booking Details -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="#ffffff"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Date Info -->
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date Info"
+            android:textSize="16sp"
+            android:textColor="@color/darkJungleGreen"/>
+
+        <!-- Room Details -->
+        <TextView
+            android:id="@+id/tv_room_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Room Details"
+            android:textSize="16sp"
+            android:textColor="@color/richBlackGreenishTint"/>
+
+        <!-- Bed Info -->
+        <TextView
+            android:id="@+id/tv_bed_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bed Info"
+            android:textSize="16sp"
+            android:textColor="@color/deepAquamarine"/>
+
+        <!-- No Smoking Info -->
+        <TextView
+            android:id="@+id/tv_no_smoking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Smoking"
+            android:textSize="16sp"
+            android:textColor="@color/tealBlue"/>
+
+        <!-- Meal Info -->
+        <TextView
+            android:id="@+id/tv_meal_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meal Info"
+            android:textSize="16sp"
+            android:textColor="@color/gray"/>
+
+        <!-- Non-Refundable Info -->
+        <TextView
+            android:id="@+id/tv_non_refundable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non-Refundable"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark"/>
+
+        <!-- Payment Info -->
+        <TextView
+            android:id="@+id/tv_payment_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Info"
+            android:textSize="16sp"
+            android:textColor="@color/primary"/>
+
+        <!-- Payment Amount -->
+        <TextView
+            android:id="@+id/tv_payment_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Amount"
+            android:textSize="16sp"
+            android:textColor="@color/primary_dark"/>
+
+        <!-- Book Now Button -->
+        <Button
+            android:id="@+id/btn_book_now"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book Now"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@color/primary"
+            app:layout_constraintTop_toBottomOf="@id/tv_payment_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
