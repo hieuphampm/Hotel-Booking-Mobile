@@ -10,6 +10,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+<<<<<<< HEAD
 
 <!-- Strings for FirstPaymentActivity -->
     <string name="header_text">Thông tin thanh toán</string>
@@ -37,3 +38,16 @@
     <string name="empty_fields_error">Vui lòng điền đầy đủ thông tin</string>
 
 </resources>
+=======
+    <string name="title_activity_nav">NavActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_search">Search</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="calendar">Calendar</string>
+    <string name="account">Account</string>
+    <string name="banner_description">banner description\n</string>
+</resources>
+>>>>>>> debug
