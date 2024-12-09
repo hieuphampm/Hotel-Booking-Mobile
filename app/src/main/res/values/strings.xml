@@ -10,4 +10,30 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <!-- Strings for FirstPaymentActivity -->
+    <string name="header_text">Thông tin thanh toán</string>
+    <string name="date_info">Ngày đặt phòng: 12/12/2024</string>
+    <string name="room_details">Phòng đôi, view biển</string>
+    <string name="bed_info">Giường đôi, 2 người</string>
+    <string name="no_smoking">Cấm hút thuốc trong phòng</string>
+    <string name="meal_info">Bữa sáng miễn phí</string>
+    <string name="non_refundable">Không hoàn lại</string>
+    <string name="payment_info">Thanh toán khi nhận phòng</string>
+    <string name="payment_amount">1,200,000 VNĐ</string>
+    <string name="book_now">Đặt ngay</string>
+
+    <!-- Strings for BookingConfirmationActivity -->
+    <string name="confirmation_room_details">Chi tiết phòng</string>
+    <string name="confirmation_date_info">Thông tin ngày</string>
+    <string name="confirmation_payment_amount">Số tiền thanh toán</string>
+
+    <string name="account_number_hint">Số tài khoản</string>
+    <string name="account_name_hint">Tên chủ tài khoản</string>
+    <string name="bank_name_hint">Tên ngân hàng</string>
+    <string name="payment_amount_label">Số tiền thanh toán</string>
+    <string name="confirm_payment">Xác nhận thanh toán</string>
+    <string name="payment_success">Thanh toán thành công!</string>
+    <string name="empty_fields_error">Vui lòng điền đầy đủ thông tin</string>
+
 </resources>
