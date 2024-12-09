@@ -22,18 +22,16 @@
             android:background="@drawable/card_background"
             android:layout_margin="16dp"
             android:elevation="4dp">
-
-            <!-- Room Image -->
+            
             <ImageView
                 android:id="@+id/room_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/sample_room_image"
-                android:layout_marginBottom="16dp"
                 tools:ignore="ContentDescription" />
 
-            <!-- Room Name -->
             <TextView
                 android:id="@+id/room_name"
                 android:layout_width="match_parent"
