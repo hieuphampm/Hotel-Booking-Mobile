@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class HistoryAdapter(private var historyList: List<HistoryActivity.Reservation>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.history_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_room, parent, false)
         return HistoryViewHolder(view)
     }
 
