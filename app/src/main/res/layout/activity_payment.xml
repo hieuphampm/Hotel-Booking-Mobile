@@ -1,107 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    android:padding="16dp"
     tools:context=".PaymentActivity">
 
+    <!-- Header -->
     <TextView
-        android:id="@+id/payment_title"
+        android:id="@+id/tv_payment_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PAYMENT"
-        android:textSize="30sp"
+        android:text="Thông tin thanh toán"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/tealBlue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Bank Account Info -->
+    <TextView
+        android:id="@+id/tv_bank_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thông tin tài khoản ngân hàng"
+        android:textSize="18sp"
+        android:textColor="@color/darkJungleGreen"
+        app:layout_constraintTop_toBottomOf="@id/tv_payment_header"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"
-        tools:ignore="HardcodedText" />
+        android:layout_marginTop="20dp"/>
 
     <EditText
-        android:id="@+id/card_number"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint=" Card Number"
-        android:textColor="@color/tealBlue"
-        android:textColorHint="@color/lightSteelTeal"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/payment_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
-
-    <EditText
-        android:id="@+id/cardholder_name"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint=" Cardholder Name"
-        android:textColor="@color/tealBlue"
-        android:textColorHint="@color/lightSteelTeal"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/card_number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
-
-    <EditText
-        android:id="@+id/expiry_date"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:hint=" MM/YY"
-        android:textColor="@color/tealBlue"
-        android:textColorHint="@color/lightSteelTeal"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/cardholder_name"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@id/cvv"
-        tools:ignore="Autofill,HardcodedText,TextFields"/>
-
-    <EditText
-        android:id="@+id/cvv"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:hint=" CVV"
-        android:inputType="number"
-        android:textColor="@color/tealBlue"
-        android:textColorHint="@color/lightSteelTeal"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/cardholder_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintStart_toEndOf="@id/expiry_date"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
-
-    <android.widget.Button
-        android:id="@+id/confirm_payment_button"
+        android:id="@+id/et_account_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/hover_btn"
-        android:text="Confirm Payment"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="Số tài khoản"
+        android:inputType="number"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintTop_toBottomOf="@id/tv_bank_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        tools:ignore="HardcodedText,DuplicateSpeakableTextCheck,VisualLintButtonSize"
-        />
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/et_account_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên chủ tài khoản"
+        android:inputType="text"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintTop_toBottomOf="@id/et_account_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/et_bank_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên ngân hàng"
+        android:inputType="text"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintTop_toBottomOf="@id/et_account_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Amount and Confirm Button -->
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số tiền thanh toán"
+        android:textSize="18sp"
+        android:textColor="@color/darkJungleGreen"
+        app:layout_constraintTop_toBottomOf="@id/et_bank_name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/et_payment_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập số tiền"
+        android:inputType="numberDecimal"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintTop_toBottomOf="@id/tv_amount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/btn_confirm_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xác nhận thanh toán"
+        android:textColor="@android:color/white"
+        android:background="@color/primary"
+        app:layout_constraintTop_toBottomOf="@id/et_payment_amount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
