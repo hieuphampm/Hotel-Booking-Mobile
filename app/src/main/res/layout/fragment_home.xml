@@ -58,10 +58,11 @@
                     android:id="@+id/searchEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Search"
                     android:background="@drawable/edittext_background"
-                    android:padding="8dp"
+                    android:hint="Search"
                     android:inputType="text"
+                    android:minHeight="48dp"
+                    android:padding="8dp"
                     tools:ignore="Autofill,HardcodedText" />
 
             </LinearLayout>
