@@ -20,4 +20,5 @@
     <string name="calendar">Calendar</string>
     <string name="account">Account</string>
     <string name="banner_description">banner description\n</string>
+    <string name="default_web_client_id">YOUR_CLIENT_ID_FROM_FIREBASE</string>
 </resources>
