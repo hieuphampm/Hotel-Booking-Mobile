@@ -22,7 +22,7 @@
             android:background="@drawable/card_background"
             android:layout_margin="16dp"
             android:elevation="4dp">
-            
+
             <ImageView
                 android:id="@+id/room_image"
                 android:layout_width="match_parent"
