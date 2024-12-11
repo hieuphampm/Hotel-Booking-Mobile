@@ -51,4 +51,9 @@
     <string name="type_single">Type: Single</string>
     <string name="type_family">Type: Family</string>
 
+     <!-- Payment Success -->
+    <string name="payment_success">Thanh toán thành công</string>
+    <string name="payment_success_message">Chúc mừng! Đặt phòng của bạn đã được xác nhận thành công.</string>
+    <string name="close">Đóng</string>
+
 </resources>
