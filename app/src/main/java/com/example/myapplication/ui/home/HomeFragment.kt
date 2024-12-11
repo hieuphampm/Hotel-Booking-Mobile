@@ -4,39 +4,70 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.databinding.FragmentHomeBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var bannerImageView: ImageView
+    private lateinit var searchEditText : EditText
+    private lateinit var roomsRecyclerView: RecyclerView
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        bannerImageView = rootView.findViewById(R.id.bannerImageView)
+        searchEditText = rootView.findViewById(R.id.searchEditText)
+        roomsRecyclerView = rootView.findViewById(R.id.roomsRecyclerView)
+        bottomNavigationView = rootView.findViewById(R.id.bottomNavigationView)
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        setEventListeners()
+
+        return rootView
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setEventListeners() {
+        bannerImageView.setOnClickListener {
+            Toast.makeText(requireContext(), "Banner clicked!", Toast.LENGTH_SHORT).show()
+        }
+        searchEditText.setOnEditorActionListener { _, _, _ ->
+            val query = searchEditText.text.toString()
+            if (query.isNotEmpty()) {
+                Toast.makeText(requireContext(), "Searching for: $query", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Please enter a search query.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            true
+        }
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_home -> {
+                    Toast.makeText(requireContext(), "Home selected", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                R.id.navigation_profile -> {
+                    Toast.makeText(requireContext(), "Profile selected", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                R.id.navigation_notifications -> {
+                    Toast.makeText(requireContext(), "Notifications selected", Toast.LENGTH_SHORT)
+                        .show()
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 }

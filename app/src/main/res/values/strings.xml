@@ -20,5 +20,8 @@
     <string name="calendar">Calendar</string>
     <string name="account">Account</string>
     <string name="banner_description">banner description\n</string>
-    <string name="default_web_client_id">YOUR_CLIENT_ID_FROM_FIREBASE</string>
+    <string name="default_web_client_id">101761843987-mtgs8ont15jop7hl7qcgphdg2n4jdleh.apps.googleusercontent.com</string>
+    <string name="title_profile">Profile</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile">Profile</string>
 </resources>
