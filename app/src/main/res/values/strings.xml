@@ -41,5 +41,14 @@
     <string name="family_room">Family Room</string>
     <string name="price_120_per_night">Price: $120 per night</string>
     <string name="price_200_per_night">Price: $200 per night</string>
+    <string name="price_50_per_night">Price: $50 per night</string>
+    <string name="price_150_per_night">Price: $150 per night</string>
+    <string name="available">Available</string>
+    <string name="booked">Booked</string>
+    <string name="type_deluxe">Type: Deluxe</string>
+    <string name="type_standard">Type: Standard</string>
+    <string name="type_suite">Type: Suite</string>
+    <string name="type_single">Type: Single</string>
+    <string name="type_family">Type: Family</string>
 
 </resources>

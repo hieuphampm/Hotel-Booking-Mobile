@@ -70,7 +70,7 @@
                         android:id="@+id/room_type_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Type: Deluxe"
+                        android:text="@string/type_deluxe"
                         android:textSize="14sp"
                         android:textColor="#666666" />
 
@@ -78,9 +78,9 @@
                         android:id="@+id/room_status_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Available"
-                        android:textSize="14sp"
-                        android:textColor="#4CAF50" />
+                        android:text="@string/available"
+                        android:textColor="#2E7D32"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -138,7 +138,7 @@
                         android:id="@+id/room_type_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Type: Standard"
+                        android:text="@string/type_standard"
                         android:textSize="14sp"
                         android:textColor="#666666" />
 
@@ -146,9 +146,9 @@
                         android:id="@+id/room_status_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Booked"
-                        android:textSize="14sp"
-                        android:textColor="#FF5722" />
+                        android:text="@string/booked"
+                        android:textColor="#DD2C00"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -205,7 +205,7 @@
                         android:id="@+id/room_type_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Type: Suite"
+                        android:text="@string/type_suite"
                         android:textSize="14sp"
                         android:textColor="#666666" />
 
@@ -214,8 +214,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Available"
-                        android:textSize="14sp"
-                        android:textColor="#4CAF50" />
+                        android:textColor="#2E7D32"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -263,7 +263,7 @@
                         android:id="@+id/room_price_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Price: $50 per night"
+                        android:text="@string/price_50_per_night"
                         android:textSize="14sp"
                         android:textColor="#666666"
                         android:layout_marginBottom="4dp" />
@@ -272,7 +272,7 @@
                         android:id="@+id/room_type_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Type: Single"
+                        android:text="@string/type_single"
                         android:textSize="14sp"
                         android:textColor="#666666" />
 
@@ -281,8 +281,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Available"
-                        android:textSize="14sp"
-                        android:textColor="#4CAF50" />
+                        android:textColor="#2E7D32"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -330,7 +330,7 @@
                         android:id="@+id/room_price_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Price: $150 per night"
+                        android:text="@string/price_150_per_night"
                         android:textSize="14sp"
                         android:textColor="#666666"
                         android:layout_marginBottom="4dp" />
@@ -339,7 +339,7 @@
                         android:id="@+id/room_type_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Type: Family"
+                        android:text="@string/type_family"
                         android:textSize="14sp"
                         android:textColor="#666666" />
 
@@ -348,8 +348,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Available"
-                        android:textSize="14sp"
-                        android:textColor="#4CAF50" />
+                        android:textColor="#2E7D32"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
