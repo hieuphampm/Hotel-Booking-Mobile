@@ -5,6 +5,7 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+<<<<<<< HEAD
       <SelectionState runConfigName="PaymentActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
@@ -17,6 +18,8 @@
       <SelectionState runConfigName="HomeActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+=======
+>>>>>>> bd69b59205b78d99f3f9acb1b0ec9ff3990dccc3
     </selectionStates>
   </component>
 </project>

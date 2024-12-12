@@ -59,11 +59,16 @@
                     android:id="@+id/searchEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Search"
                     android:background="@drawable/edittext_background"
-                    android:padding="8dp"
+                    android:hint="Search"
                     android:inputType="text"
+<<<<<<< HEAD
                     tools:ignore="HardcodedText" />
+=======
+                    android:minHeight="48dp"
+                    android:padding="8dp"
+                    tools:ignore="Autofill,HardcodedText" />
+>>>>>>> bd69b59205b78d99f3f9acb1b0ec9ff3990dccc3
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
