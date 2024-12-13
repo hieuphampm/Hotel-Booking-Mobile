@@ -1,56 +1,87 @@
-package com.example.myapplication
+package com.example.hotelapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.addTextChangedListener
+import com.google.android.material.button.MaterialButton
 
 class FirstPaymentActivity : AppCompatActivity() {
+
+    private lateinit var etCustomerNotes: EditText
+    private lateinit var cbNearElevator: CheckBox
+    private lateinit var cbFarFromElevator: CheckBox
+    private lateinit var cbNonSmoking: CheckBox
+    private lateinit var cbNoCornerRoom: CheckBox
+    private lateinit var cbSoundproofRoom: CheckBox
+    private lateinit var cbHighFloor: CheckBox
+    private lateinit var btnBookNow: MaterialButton
+    private lateinit var layout: ConstraintLayout
+
+    private var roomPrice: String? = null 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_payment)
 
-        // Retrieve data from the intent
-        val dateInfo = intent.getStringExtra("date_info") ?: ""
-        val roomDetails = intent.getStringExtra("room_details") ?: ""
-        val bedInfo = intent.getStringExtra("bed_info") ?: ""
-        val noSmoking = intent.getStringExtra("no_smoking") ?: ""
-        val mealInfo = intent.getStringExtra("meal_info") ?: ""
-        val nonRefundable = intent.getStringExtra("non_refundable") ?: ""
-        val paymentInfo = intent.getStringExtra("payment_info") ?: ""
-        val paymentAmount = intent.getStringExtra("payment_amount") ?: ""
+       
+        roomPrice = intent.getStringExtra("room_price")
 
-        // Set the data to TextViews
-        val tvDate: TextView = findViewById(R.id.tv_date)
-        val tvRoomDetails: TextView = findViewById(R.id.tv_room_details)
-        val tvBedInfo: TextView = findViewById(R.id.tv_bed_info)
-        val tvNoSmoking: TextView = findViewById(R.id.tv_no_smoking)
-        val tvMealInfo: TextView = findViewById(R.id.tv_meal_info)
-        val tvNonRefundable: TextView = findViewById(R.id.tv_non_refundable)
-        val tvPaymentInfo: TextView = findViewById(R.id.tv_payment_info)
-        val tvPaymentAmount: TextView = findViewById(R.id.tv_payment_amount)
+        etCustomerNotes = findViewById(R.id.et_customer_notes)
+        cbNearElevator = findViewById(R.id.cb_near_elevator)
+        cbFarFromElevator = findViewById(R.id.cb_far_from_elevator)
+        cbNonSmoking = findViewById(R.id.cb_non_smoking)
+        cbNoCornerRoom = findViewById(R.id.cb_no_corner_room)
+        cbSoundproofRoom = findViewById(R.id.cb_soundproof_room)
+        cbHighFloor = findViewById(R.id.cb_high_floor)
+        btnBookNow = findViewById(R.id.btn_book_now)
+        layout = findViewById(R.id.layout_first_payment)
 
-        tvDate.text = dateInfo
-        tvRoomDetails.text = roomDetails
-        tvBedInfo.text = bedInfo
-        tvNoSmoking.text = noSmoking
-        tvMealInfo.text = mealInfo
-        tvNonRefundable.text = nonRefundable
-        tvPaymentInfo.text = paymentInfo
-        tvPaymentAmount.text = paymentAmount
+  
+        etCustomerNotes.addTextChangedListener {
+            validateBookingButton()
+        }
 
-        // Set up the book now button
-        val btnBookNow: Button = findViewById(R.id.btn_book_now)
         btnBookNow.setOnClickListener {
-            // Launch BookingConfirmationActivity
-            val intent = Intent(this, BookingConfirmationActivity::class.java).apply {
-                putExtra("room_details", roomDetails)
-                putExtra("date_info", dateInfo)
-                putExtra("payment_amount", paymentAmount)
+            handleBooking()
+        }
+    }
+
+    private fun handleBooking() {
+        val notes = etCustomerNotes.text.toString()
+        val specialRequests = getSelectedRequests()
+
+        
+        if (notes.isNotEmpty() || specialRequests.isNotEmpty()) {
+            val intent = Intent(this, PaymentActivity::class.java).apply {
+                putExtra("room_price", roomPrice) 
             }
             startActivity(intent)
+        } else {
+            Toast.makeText(this, "Please add notes or special requests.", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun getSelectedRequests(): String {
+        val selectedRequests = mutableListOf<String>()
+
+        if (cbNearElevator.isChecked) selectedRequests.add(getString(R.string.near_elevator))
+        if (cbFarFromElevator.isChecked) selectedRequests.add(getString(R.string.far_from_elevator))
+        if (cbNonSmoking.isChecked) selectedRequests.add(getString(R.string.non_smoking_request))
+        if (cbNoCornerRoom.isChecked) selectedRequests.add(getString(R.string.no_corner_room))
+        if (cbSoundproofRoom.isChecked) selectedRequests.add(getString(R.string.soundproof_room))
+        if (cbHighFloor.isChecked) selectedRequests.add(getString(R.string.high_floor))
+
+        return selectedRequests.joinToString(", ")
+    }
+
+    private fun validateBookingButton() {
+        val notes = etCustomerNotes.text.toString()
+   
+        btnBookNow.isEnabled = notes.isNotEmpty() || getSelectedRequests().isNotEmpty()
     }
 }
