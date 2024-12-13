@@ -1,11 +1,10 @@
 package com.example.myapplication.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.Room
 import com.example.myapplication.RoomAdapter
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.myapplication.RoomDetailsActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeFragment : Fragment() {
@@ -32,7 +31,16 @@ class HomeFragment : Fragment() {
         roomsRecyclerView = view.findViewById(R.id.roomsRecyclerView)
         roomsRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        roomsAdapter = RoomAdapter(requireContext(), roomList)
+        // Khởi tạo RoomAdapter với sự kiện click
+        roomsAdapter = RoomAdapter(requireContext(), roomList, object : RoomAdapter.OnRoomClickListener {
+            override fun onRoomClick(room: Room) {
+                // Mở RoomDetailsActivity và truyền thông tin phòng
+                val intent = Intent(requireContext(), RoomDetailsActivity::class.java)
+                intent.putExtra("ROOM_ID", room.id)
+                startActivity(intent)
+            }
+        })
+
         roomsRecyclerView.adapter = roomsAdapter
 
         loadRooms()
@@ -47,6 +55,7 @@ class HomeFragment : Fragment() {
                 roomList.clear()
                 for (doc in querySnapshot) {
                     val room = doc.toObject(Room::class.java)
+                    room.id = doc.id
                     roomList.add(room)
                 }
                 roomsAdapter.notifyDataSetChanged()

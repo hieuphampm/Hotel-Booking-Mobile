@@ -8,15 +8,42 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import java.text.NumberFormat
+import java.util.Locale
 
-class RoomAdapter(private val context: Context, private val roomList: List<Room>) :
-    RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
+class RoomAdapter(
+    private val context: Context,
+    private val roomList: List<Room>,
+    private val onRoomClickListener: OnRoomClickListener
+) : RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
+
+    interface OnRoomClickListener {
+        fun onRoomClick(room: Room)
+    }
 
     inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val roomType: TextView = itemView.findViewById(R.id.room_type)
         val price: TextView = itemView.findViewById(R.id.room_price)
         val description: TextView = itemView.findViewById(R.id.room_description)
         val roomImage: ImageView = itemView.findViewById(R.id.room_image)
+
+        fun bind(room: Room) {
+            roomType.text = room.roomType
+
+            val priceInVND = room.price
+            val formattedPrice = NumberFormat.getCurrencyInstance(Locale("vi", "VN")).format(priceInVND)
+            price.text = formattedPrice
+
+            description.text = room.description
+
+            Glide.with(context)
+                .load(room.imageURL)
+                .into(roomImage)
+
+            itemView.setOnClickListener {
+                onRoomClickListener.onRoomClick(room)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
@@ -26,17 +53,10 @@ class RoomAdapter(private val context: Context, private val roomList: List<Room>
 
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
         val room = roomList[position]
-        holder.roomType.text = room.roomType
-        holder.price.text = "$${room.price}"
-        holder.description.text = room.description
-
-        Glide.with(context)
-            .load(room.imageURL)
-            .into(holder.roomImage)
+        holder.bind(room)
     }
 
     override fun getItemCount(): Int {
         return roomList.size
     }
 }
-
