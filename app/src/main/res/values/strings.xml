@@ -24,4 +24,13 @@
     <string name="title_profile">Profile</string>
     <string name="notifications">Notifications</string>
     <string name="profile">Profile</string>
+    <string-array name="payment_methods">
+        <item>Credit Card</item>
+        <item>Debit Card</item>
+        <item>PayPal</item>
+        <item>Bank Transfer</item>
+        <item>Google Pay</item>
+        <item>Cash</item>
+    </string-array>
+
 </resources>

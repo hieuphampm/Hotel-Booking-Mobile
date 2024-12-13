@@ -7,12 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".PaymentActivity">
 
+    <!-- Payment Method Header -->
     <TextView
         android:id="@+id/payment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PAYMENT"
-        android:textSize="30sp"
+        android:text="Select Payment Method"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/tealBlue"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,87 +22,114 @@
         android:layout_marginTop="32dp"
         tools:ignore="HardcodedText" />
 
+    <!-- Payment Method Spinner -->
+    <Spinner
+        android:id="@+id/payment_method_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/payment_methods"
+        android:background="@drawable/edittext_background"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/tealBlue"
+        app:layout_constraintTop_toBottomOf="@id/payment_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp" />
+
+    <!-- Card Number -->
     <EditText
         android:id="@+id/card_number"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint=" Card Number"
+        android:hint="Card Number"
+        android:inputType="number"
+        android:drawableStart="@drawable/baseline_account_box_24"
+        android:drawablePadding="8dp"
         android:textColor="@color/tealBlue"
         android:textColorHint="@color/lightSteelTeal"
         android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/payment_title"
+        app:layout_constraintTop_toBottomOf="@id/payment_method_spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
+        android:layout_marginTop="20dp"
+        tools:ignore="Autofill,HardcodedText" />
 
+    <!-- Cardholder Name -->
     <EditText
         android:id="@+id/cardholder_name"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint=" Cardholder Name"
+        android:hint="Cardholder Name"
+        android:drawableStart="@drawable/baseline_account_box_24"
+        android:drawablePadding="8dp"
         android:textColor="@color/tealBlue"
         android:textColorHint="@color/lightSteelTeal"
         android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@id/card_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
+        android:layout_marginTop="20dp"
+        tools:ignore="Autofill,HardcodedText" />
 
+    <!-- Expiry Date and CVV -->
     <EditText
         android:id="@+id/expiry_date"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:hint=" MM/YY"
+        android:hint="MM/YY"
+        android:inputType="date"
+        android:drawableStart="@drawable/baseline_calendar_month_24"
+        android:drawablePadding="8dp"
         android:textColor="@color/tealBlue"
         android:textColorHint="@color/lightSteelTeal"
         android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@id/cardholder_name"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@id/cvv"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@id/cvv"
-        tools:ignore="Autofill,HardcodedText,TextFields"/>
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:id="@+id/cvv"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:hint=" CVV"
+        android:hint="CVV"
         android:inputType="number"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="8dp"
         android:textColor="@color/tealBlue"
         android:textColorHint="@color/lightSteelTeal"
         android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@id/cardholder_name"
+        app:layout_constraintStart_toEndOf="@id/expiry_date"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintStart_toEndOf="@id/expiry_date"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
+        android:layout_marginTop="20dp" />
 
-    <android.widget.Button
+    <!-- Confirm Payment Button -->
+    <Button
         android:id="@+id/confirm_payment_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/hover_btn"
         android:text="Confirm Payment"
-        android:textSize="20sp"
-        android:textStyle="normal"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        tools:ignore="HardcodedText,DuplicateSpeakableTextCheck,VisualLintButtonSize"
-        />
+        android:layout_marginBottom="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
