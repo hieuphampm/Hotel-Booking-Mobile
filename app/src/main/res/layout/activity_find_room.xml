@@ -1,90 +1,172 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FindRoomActivity">
+    tools:context=".RoomDetailsActivity">
 
-    <!-- Search Bar -->
-    <EditText
-        android:id="@+id/search_bar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/search_bar_bg"
-        android:drawableStart="@drawable/ic_search"
-        android:drawablePadding="8dp"
-        android:hint="Search for a room"
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:padding="12dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <!-- Filter Buttons -->
-    <LinearLayout
-        android:id="@+id/filters_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/search_bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <Button
-            android:id="@+id/filter_price"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Price"
-            android:backgroundTint="@color/primary"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            tools:ignore="ButtonStyle,HardcodedText" />
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
+            android:layout_margin="16dp"
+            android:elevation="4dp">
 
-        <Button
-            android:id="@+id/filter_availability"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:text="Availability"
-            android:backgroundTint="@color/primary"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            tools:ignore="ButtonStyle,HardcodedText" />
+            <ImageView
+                android:id="@+id/room_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop"
+                android:src="@raw/landing"
+                tools:ignore="ContentDescription" />
 
-        <Button
-            android:id="@+id/filter_features"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:text="Features"
-            android:backgroundTint="@color/primary"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            tools:ignore="ButtonStyle,HardcodedText" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/room_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room Name"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="8dp"
+                tools:ignore="HardcodedText" />
 
-    <!-- RecyclerView for Room List -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/room_list_recyclerview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:clipToPadding="false"
-        android:paddingBottom="8dp"
-        app:layout_constraintTop_toBottomOf="@id/filters_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+            <!-- Room Price -->
+            <TextView
+                android:id="@+id/room_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price: $100 per night"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="16dp"
+                tools:ignore="HardcodedText" />
+
+            <!-- Room Description -->
+            <TextView
+                android:id="@+id/room_description_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room Description:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="8dp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/room_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This spacious room is 35 square meters in size and includes the following amenities: a king-size bed, a wardrobe, a working desk, and a minibar. Perfect for families or business travelers, it also features large windows with a city view."
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="16dp"
+                tools:ignore="HardcodedText" />
+
+            <!-- Room Features -->
+            <TextView
+                android:id="@+id/room_features_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Features:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="8dp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/room_features"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Free WiFi\n• Air Conditioning\n• Smart TV\n• King-Size Bed\n• Ensuite Bathroom"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="16dp"
+                tools:ignore="HardcodedText" />
+
+            <!-- Room Rating -->
+            <RatingBar
+                android:id="@+id/room_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:rating="4.5"
+                android:layout_marginBottom="16dp"
+                 />
+<!--            android:theme="@style/RatingBarStyle"-->
+            <!-- Reviews -->
+            <TextView
+                android:id="@+id/reviews_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Customer Reviews:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="8dp"
+                tools:ignore="HardcodedText" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reviews_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Buttons -->
+            <Button
+                android:id="@+id/book_now_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Book Now"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:background="@drawable/hover_btn"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/add_to_favorites_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Add to Favorites"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:background="@drawable/hover_btn"
+                android:layout_marginTop="8dp"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/contact_support_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Contact Support"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:background="@drawable/hover_btn"
+                android:layout_marginTop="8dp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,39 +4,55 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.databinding.FragmentHomeBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
+import com.example.myapplication.Room
+import com.example.myapplication.RoomAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var roomsRecyclerView: RecyclerView
+    private lateinit var roomsAdapter: RoomAdapter
+    private val roomList = mutableListOf<Room>()
+    private val firestore by lazy { FirebaseFirestore.getInstance() }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        roomsRecyclerView = view.findViewById(R.id.roomsRecyclerView)
+        roomsRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        roomsAdapter = RoomAdapter(requireContext(), roomList)
+        roomsRecyclerView.adapter = roomsAdapter
+
+        loadRooms()
+
+        return view
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun loadRooms() {
+        firestore.collection("rooms")
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                roomList.clear()
+                for (doc in querySnapshot) {
+                    val room = doc.toObject(Room::class.java)
+                    roomList.add(room)
+                }
+                roomsAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(context, "Failed to load data: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 }

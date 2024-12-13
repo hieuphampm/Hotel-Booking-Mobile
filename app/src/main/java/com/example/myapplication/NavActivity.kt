@@ -1,35 +1,26 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.example.myapplication.databinding.ActivityNavBinding
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class NavActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityNavBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_nav)
 
-        binding = ActivityNavBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        // Get NavController from NavHostFragment
+        val navController: NavController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        val navView: BottomNavigationView = binding.navView
+        // Setup BottomNavigationView with NavController
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_nav)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        // Optional: Handle App Bar if you have one
+        // NavigationUI.setupActionBarWithNavController(this, navController)
     }
 }

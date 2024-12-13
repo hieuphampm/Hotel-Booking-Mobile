@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
-    android:background="@drawable/landing">
+    android:background="@raw/landing">
 
     <TextView
         android:id="@+id/tv_sign_in"
@@ -42,7 +42,7 @@
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:background="@drawable/edittext_background"
-        android:hint="Password"
+        android:hint=" Password"
         android:inputType="textPassword"
         android:padding="2sp"
         app:layout_constraintTop_toBottomOf="@+id/et_email"
@@ -76,6 +76,15 @@
         app:layout_constraintTop_toBottomOf="@+id/et_password"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="HardcodedText" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btn_google_signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_signin"
+        android:layout_marginBottom="10dp"/>
+
     <android.widget.Button
         android:id="@+id/btn_signin"
         android:layout_width="match_parent"

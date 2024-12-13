@@ -6,37 +6,70 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.databinding.FragmentNotificationsBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
+
 
 class NotificationsFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var notificationsAdapter: NotificationsAdapter
+    private lateinit var notificationsRecyclerView: RecyclerView
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_notifications, container, false)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        // Initialize RecyclerView
+        notificationsRecyclerView = view.findViewById(R.id.rvNotifications)
+        notificationsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        // Initialize data
+        val notifications = listOf(
+            Notification("Your booking is confirmed!", "Hotel Sunshine, Room 305"),
+            Notification("Check-in reminder", "Don’t forget to check-in tomorrow at Hotel Blossom."),
+            Notification("Special Offer", "Get 10% off on your next booking. Limited time offer!"),
+            Notification("Room Upgrade!", "Your room has been upgraded to a deluxe suite."),
+        )
+
+        // Set adapter
+        notificationsAdapter = NotificationsAdapter(notifications)
+        notificationsRecyclerView.adapter = notificationsAdapter
+
+        return view
+    }
+}
+
+// Data model for Notification
+data class Notification(val title: String, val description: String)
+
+// Adapter for RecyclerView
+class NotificationsAdapter(private val notifications: List<Notification>) :
+    RecyclerView.Adapter<NotificationsAdapter.NotificationViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_notification, parent, false)
+        return NotificationViewHolder(view)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
+        val notification = notifications[position]
+        holder.bind(notification)
+    }
+
+    override fun getItemCount(): Int = notifications.size
+
+    // ViewHolder for Notification item
+    class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val titleTextView: TextView = itemView.findViewById(R.id.tvNotificationTitle)
+        private val descriptionTextView: TextView = itemView.findViewById(R.id.tvNotificationDescription)
+
+        fun bind(notification: Notification) {
+            titleTextView.text = notification.title
+            descriptionTextView.text = notification.description
+        }
     }
 }
