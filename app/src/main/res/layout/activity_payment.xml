@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".PaymentActivity">
 
-    <!-- Payment Method Header -->
+ 
     <TextView
         android:id="@+id/payment_title"
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:layout_marginTop="32dp"
         tools:ignore="HardcodedText" />
 
-    <!-- Payment Method Spinner -->
+  
     <Spinner
         android:id="@+id/payment_method_spinner"
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp" />
 
-    <!-- Card Number -->
+    
     <EditText
         android:id="@+id/card_number"
         android:layout_width="match_parent"
@@ -59,7 +59,7 @@
         android:layout_marginTop="20dp"
         tools:ignore="Autofill,HardcodedText" />
 
-    <!-- Cardholder Name -->
+   
     <EditText
         android:id="@+id/cardholder_name"
         android:layout_width="match_parent"
@@ -78,7 +78,6 @@
         android:layout_marginTop="20dp"
         tools:ignore="Autofill,HardcodedText" />
 
-    <!-- Expiry Date and CVV -->
     <EditText
         android:id="@+id/expiry_date"
         android:layout_width="0dp"
@@ -115,7 +114,23 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="20dp" />
 
-    <!-- Confirm Payment Button -->
+   
+    <EditText
+        android:id="@+id/payment_amount"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Amount"
+        android:textColor="@color/tealBlue"
+        android:inputType="numberDecimal"
+        android:textColorHint="@color/lightSteelTeal"
+        android:background="@drawable/edittext_background"
+        app:layout_constraintTop_toBottomOf="@id/cvv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText" />
+
+
     <Button
         android:id="@+id/confirm_payment_button"
         android:layout_width="match_parent"
@@ -133,3 +148,4 @@
         android:layout_marginBottom="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
