@@ -12,14 +12,14 @@ class PaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
-        
-        val etAccountNumber: EditText = findViewById(R.id.et_account_number)
-        val etAccountName: EditText = findViewById(R.id.et_account_name)
-        val etBankName: EditText = findViewById(R.id.et_bank_name)
-        val etPaymentAmount: EditText = findViewById(R.id.et_payment_amount)
+     
+        val etAccountNumber: EditText = findViewById(R.id.card_number)
+        val etAccountName: EditText = findViewById(R.id.cardholder_name)
+        val etBankName: EditText = findViewById(R.id.payment_method_spinner)
+        val etPaymentAmount: EditText = findViewById(R.id.payment_amount)
         val btnConfirmPayment: Button = findViewById(R.id.confirm_payment_button)
 
-        
+     
         val paymentAmount = intent.getStringExtra("payment_amount") ?: "0"
         etPaymentAmount.setText(paymentAmount)
 
@@ -29,12 +29,11 @@ class PaymentActivity : AppCompatActivity() {
             val bankName = etBankName.text.toString().trim()
 
             if (accountNumber.isEmpty() || accountName.isEmpty() || bankName.isEmpty()) {
-                Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please complete the information", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Thanh toán thành công!", Toast.LENGTH_SHORT).show()
-               
+                Toast.makeText(this, "Payment Successful!", Toast.LENGTH_SHORT).show()
+         
             }
         }
     }
 }
-
