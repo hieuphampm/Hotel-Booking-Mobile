@@ -27,7 +27,7 @@ class FirstPaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_payment)
 
-     
+      
         etCustomerNotes = findViewById(R.id.et_customer_notes)
         cbNearElevator = findViewById(R.id.cb_near_elevator)
         cbFarFromElevator = findViewById(R.id.cb_far_from_elevator)
@@ -37,6 +37,7 @@ class FirstPaymentActivity : AppCompatActivity() {
         cbHighFloor = findViewById(R.id.cb_high_floor)
         btnBookNow = findViewById(R.id.btn_book_now)
         layout = findViewById(R.id.layout_first_payment)
+
 
         etCustomerNotes.addTextChangedListener {
             validateBookingButton()
@@ -51,12 +52,12 @@ class FirstPaymentActivity : AppCompatActivity() {
         val notes = etCustomerNotes.text.toString()
         val specialRequests = getSelectedRequests()
 
-       
+ 
         if (notes.isNotEmpty() || specialRequests.isNotEmpty()) {
             
-            val paymentAmount = "100000" 
+            val paymentAmount = "100000"
 
-            
+    
             val intent = Intent(this, PaymentActivity::class.java)
             intent.putExtra("payment_amount", paymentAmount) 
             startActivity(intent)
@@ -84,3 +85,4 @@ class FirstPaymentActivity : AppCompatActivity() {
         btnBookNow.isEnabled = notes.isNotEmpty() || getSelectedRequests().isNotEmpty()
     }
 }
+
