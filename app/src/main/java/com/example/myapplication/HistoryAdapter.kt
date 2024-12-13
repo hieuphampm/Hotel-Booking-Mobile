@@ -37,3 +37,7 @@ class HistoryAdapter(private var historyList: List<HistoryActivity.Reservation>)
         val guestName: TextView = itemView.findViewById(R.id.guest_name)
     }
 }
+
+class HistoryActivity {
+
+}
