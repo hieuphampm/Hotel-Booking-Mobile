@@ -1,107 +1,137 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PaymentActivity">
+    android:background="@android:color/white"
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/payment_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PAYMENT"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="@color/tealBlue"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"
-        tools:ignore="HardcodedText" />
-
-    <EditText
-        android:id="@+id/card_number"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint=" Card Number"
-        android:textColor="@color/tealBlue"
-        android:textColorHint="@color/lightSteelTeal"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/payment_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
-
-    <EditText
-        android:id="@+id/cardholder_name"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint=" Cardholder Name"
-        android:textColor="@color/tealBlue"
-        android:textColorHint="@color/lightSteelTeal"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/card_number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
-
-    <EditText
-        android:id="@+id/expiry_date"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:hint=" MM/YY"
-        android:textColor="@color/tealBlue"
-        android:textColorHint="@color/lightSteelTeal"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/cardholder_name"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@id/cvv"
-        tools:ignore="Autofill,HardcodedText,TextFields"/>
-
-    <EditText
-        android:id="@+id/cvv"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:hint=" CVV"
-        android:inputType="number"
-        android:textColor="@color/tealBlue"
-        android:textColorHint="@color/lightSteelTeal"
-        android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/cardholder_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintStart_toEndOf="@id/expiry_date"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
-
-    <android.widget.Button
-        android:id="@+id/confirm_payment_button"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/hover_btn"
-        android:text="Confirm Payment"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        tools:ignore="HardcodedText,DuplicateSpeakableTextCheck,VisualLintButtonSize"
-        />
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/payment_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/lightSteelTeal"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvPaymentAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amount to Pay: $0.00"
+            android:textSize="18sp"
+            android:textColor="@color/tealBlue"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/etCardholderName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_cardholder_name"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="@color/tealBlue"
+            android:hintTextColor="@color/gray"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etCardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_card_number"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="@color/tealBlue"
+            android:hintTextColor="@color/gray"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <EditText
+                android:id="@+id/etExpiryMonth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/hint_expiry_month"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColor="@color/tealBlue"
+                android:hintTextColor="@color/gray"
+                android:background="@drawable/edittext_border"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/etExpiryYear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/hint_expiry_year"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColor="@color/tealBlue"
+                android:hintTextColor="@color/gray"
+                android:background="@drawable/edittext_border" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etCVV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_cvv"
+            android:inputType="numberPassword"
+            android:padding="10dp"
+            android:textColor="@color/tealBlue"
+            android:hintTextColor="@color/gray"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etBillingAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_billing_address"
+            android:inputType="textPostalAddress"
+            android:padding="10dp"
+            android:textColor="@color/tealBlue"
+            android:hintTextColor="@color/gray"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textColor="@color/tealBlue"
+            android:hintTextColor="@color/gray"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnSubmitPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_submit_payment"
+            android:backgroundTint="@color/primary"
+            android:textColor="@android:color/white"
+            android:padding="12dp"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+</ScrollView>
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BookingRoomActivity"
+    >
+
+    <!-- Toolbar with Up Arrow -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/deepAquamarine" />
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Booking Date"
+        android:layout_below="@+id/toolbar"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:paddingVertical="5dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="2dp"
+        android:background="#ccc"
+        android:layout_below="@+id/title"
+        android:layout_centerInParent="true"
+        />
+
+    <!-- Check-In Date Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/checkInDateInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:paddingHorizontal="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/checkInDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Check-In Date"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Check-Out Date Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/checkOutDateInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkInDateInput"
+        android:paddingHorizontal="40dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/checkOutDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Check-Out Date"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/checkOutDate"
+            android:onClick="room"
+            android:text="Search"
+            android:backgroundTint="@color/deepAquamarine"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</RelativeLayout>

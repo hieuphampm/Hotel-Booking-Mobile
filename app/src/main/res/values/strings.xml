@@ -25,26 +25,32 @@
     <string name="notifications">Notifications</string>
     <string name="profile">Profile</string>
 
-    <resources>
-    <string name="hotel_name">Hotel Thiên Hương</string>
-    <string name="date_info">Date Info</string>
-    <string name="room_details">Room Details</string>
-    <string name="bed_info">Bed Info</string>
-    <string name="no_smoking">No Smoking</string>
-    <string name="meal_info">Meal Info</string>
-    <string name="non_refundable">Non-Refundable</string>
-    <string name="payment_info">Payment Info</string>
-    <string name="payment_amount">Payment Amount</string>
-    <string name="customer_notes">Ghi chú của khách hàng</string>
-    <string name="enter_notes">Nhập ghi chú của bạn</string>
-    <string name="customer_requests">Yêu cầu của khách hàng</string>
-    <string name="near_elevator">Gần thang máy</string>
-    <string name="far_from_elevator">Xa thang máy</string>
-    <string name="non_smoking_request">Cần xử lý không khói thuốc</string>
-    <string name="no_corner_room">Không cần phòng góc</string>
-    <string name="soundproof_room">Phòng cách âm</string>
-    <string name="high_floor">Tầng cao</string>
-    <string name="book_now">Book Now</string>
-</resources>
 
+    <string name="payment_title">Thanh Toán Bằng Thẻ</string>
+    <string name="hint_cardholder_name">Tên chủ thẻ</string>
+    <string name="hint_card_number">Số thẻ</string>
+    <string name="hint_expiry_month">Tháng (MM)</string>
+    <string name="hint_expiry_year">Năm (YY)</string>
+    <string name="hint_cvv">Mã CVV</string>
+    <string name="hint_billing_address">Địa chỉ thanh toán</string>
+    <string name="btn_submit_payment">Thanh Toán</string>
+
+    <!-- Error Messages -->
+
+    <string name="hint_email" />
+
+    <!-- Thông báo khi người dùng không điền đầy đủ các trường -->
+    <string name="error_fill_all_fields">Please fill in all the fields</string>
+
+    <!-- Thông báo khi thanh toán thành công -->
+    <string name="payment_successful">Payment was successful!</string>
+
+    <!-- Thông báo số tiền cần thanh toán -->
+    <string name="amount_to_pay">Amount to Pay</string>
+
+    <!-- Thông báo tên chủ thẻ -->
+    <string name="cardholder_name_hint">Enter your name as on card</string>
+
+    <!-- Các chuỗi khác -->
+    <string name="payment_history">Payment History</string>
 </resources>

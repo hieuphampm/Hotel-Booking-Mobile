@@ -20,5 +20,6 @@
     <color name="gray">#9E9E9E</color>
     <color name="primary">#4CAF50</color>
     <color name="primary_dark">#388E3C</color>
+    <color name="my_custom_color">#FF5722</color>
 
     </resources>
