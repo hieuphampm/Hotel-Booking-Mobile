@@ -73,4 +73,5 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.core)
+    implementation(libs.firebase.firestore)
 }
