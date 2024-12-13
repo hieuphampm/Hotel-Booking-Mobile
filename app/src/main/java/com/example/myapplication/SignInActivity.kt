@@ -12,6 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.android.gms.common.SignInButton
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -24,7 +25,7 @@ class SignInActivity : AppCompatActivity() {
         val etEmail: EditText = findViewById(R.id.et_email)
         val etPassword: EditText = findViewById(R.id.et_password)
         val btnSignIn: Button = findViewById(R.id.btn_signin)
-        val btnGoogleSignIn: Button = findViewById(R.id.btn_google_signin)
+        val btnGoogleSignIn = findViewById<SignInButton>(R.id.btn_google_signin)
         val tvSignUpPrompt: TextView = findViewById(R.id.tv_signup_prompt)
         val tvForgotPassword: TextView = findViewById(R.id.tv_forgot_prompt)
 
@@ -45,7 +46,7 @@ class SignInActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         if (user != null && user.isEmailVerified) {
                             Toast.makeText(this, "Sign in successful!", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this, HomeFragment::class.java))
+                            startActivity(Intent(this, HomeActivity::class.java))
                             finish()
                         } else {
                             Toast.makeText(this, "Please verify your email first.", Toast.LENGTH_SHORT).show()
@@ -97,7 +98,7 @@ class SignInActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     Toast.makeText(this, "Google Sign-In successful! Welcome ${user?.displayName}", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, HomeFragment::class.java))
+                    startActivity(Intent(this, HomeActivity::class.java))
                     finish()
                 } else {
                     Toast.makeText(this, "Authentication failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()

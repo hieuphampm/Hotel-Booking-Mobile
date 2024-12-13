@@ -12,7 +12,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.RoomAdapter
-import com.example.myapplication.Room
 
 class FindRoomActivity : AppCompatActivity() {
 

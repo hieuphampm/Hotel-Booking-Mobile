@@ -1,47 +1,42 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
+import com.bumptech.glide.Glide
 
-class RoomAdapter : RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
+class RoomAdapter(private val context: Context, private val roomList: List<Room>) :
+    RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
 
-    private var roomList = mutableListOf<Room>()
+    inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val roomType: TextView = itemView.findViewById(R.id.room_type)
+        val price: TextView = itemView.findViewById(R.id.room_price)
+        val description: TextView = itemView.findViewById(R.id.room_description)
+        val roomImage: ImageView = itemView.findViewById(R.id.room_image)
+    }
 
-    // ViewHolder for each room item
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_room, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_room, parent, false)
         return RoomViewHolder(view)
     }
 
-    // Binding data to the ViewHolder
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
         val room = roomList[position]
-        holder.roomName.text = room.name
-        holder.roomPrice.text = room.price.toString()
-        holder.roomAvailability.text = room.availability
-        holder.roomFeatures.text = room.features
+        holder.roomType.text = room.roomType
+        holder.price.text = "$${room.price}"
+        holder.description.text = room.description
+
+        Glide.with(context)
+            .load(room.imageURL)
+            .into(holder.roomImage)
     }
 
     override fun getItemCount(): Int {
         return roomList.size
     }
-
-    // Update the room list with new data
-    fun updateRoomList(newRoomList: List<Room>) {
-        roomList.clear()
-        roomList.addAll(newRoomList)
-        notifyDataSetChanged()
-    }
-
-    // ViewHolder to bind views from item_room.xml
-    class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val roomName: TextView = itemView.findViewById(R.id.room_name)
-        val roomPrice: TextView = itemView.findViewById(R.id.room_price)
-        val roomAvailability: TextView = itemView.findViewById(R.id.room_availability)
-        val roomFeatures: TextView = itemView.findViewById(R.id.room_features)
-    }
 }
+

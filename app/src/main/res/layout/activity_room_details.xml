@@ -25,7 +25,7 @@
             android:layout_height="200dp"
             android:layout_marginBottom="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/sample_room_image"
+            android:src="@raw/landing"
             tools:ignore="ContentDescription" />
 
         <TextView
