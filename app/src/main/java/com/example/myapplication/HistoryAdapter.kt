@@ -6,7 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class HistoryAdapter(private var historyList: List<HistoryActivity.reservation>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+// Import the Reservation class if it's in a different file
+import com.example.myapplication.Reservation
+
+class HistoryAdapter(private var historyList: List<Reservation>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.history_list_item, parent, false)
@@ -18,14 +21,13 @@ class HistoryAdapter(private var historyList: List<HistoryActivity.reservation>)
         holder.roomName.text = reservation.roomName
         holder.startDate.text = reservation.startDate
         holder.endDate.text = reservation.endDate
-        holder.guestName.text = reservation.endDate
     }
 
     override fun getItemCount(): Int {
         return historyList.size
     }
 
-    fun updateList(newList: List<HistoryActivity.reservation>) {
+    fun updateList(newList: List<Reservation>) {
         historyList = newList
         notifyDataSetChanged()
     }
@@ -34,16 +36,5 @@ class HistoryAdapter(private var historyList: List<HistoryActivity.reservation>)
         val roomName: TextView = itemView.findViewById(R.id.room_name)
         val startDate: TextView = itemView.findViewById(R.id.start_date)
         val endDate: TextView = itemView.findViewById(R.id.end_date)
-        val guestName: TextView = itemView.findViewById(R.id.guest_name)
     }
-}
-
-class HistoryActivity {
-    class reservation {
-
-        val startDate: CharSequence?
-        val endDate: CharSequence?
-        val roomName: CharSequence?
-    }
-
 }
