@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.RoomAdapter
+
 
 class FindRoomActivity : AppCompatActivity() {
 
@@ -26,8 +26,6 @@ class FindRoomActivity : AppCompatActivity() {
         }
     }
 
-<<<<<<< Updated upstream
-=======
     private fun getDummyRooms(): List<Room> {
         return listOf(
             Room("Room 1", 100.0, true, listOf("Wi-Fi", "Air Conditioning")),
@@ -37,5 +35,8 @@ class FindRoomActivity : AppCompatActivity() {
         )
     }
 
->>>>>>> Stashed changes
+    private fun Room(s: String, d: Double, b: Boolean, listOf: List<String>): Room {
+        TODO("Not yet implemented")
+    }
+
 }

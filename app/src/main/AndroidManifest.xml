@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Optional Features -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -9,59 +10,46 @@
         android:name="android.hardware.telephony"
         android:required="false" />
 
+    <!-- Permissions -->
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        tools:ignore="ManifestOrder" />
+
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication"
-        tools:targetApi="31">
+        android:theme="@style/Theme.MyApplication">
+
+        <!-- MainActivity as Launcher -->
         <activity
-            android:name=".NotificationsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="true" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".WelcomeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".NavActivity"
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Other Activities -->
+        <activity android:name=".HomeActivity" android:exported="true" />
+        <activity android:name=".NotificationsActivity" android:exported="true" />
+        <activity android:name=".ProfileActivity" android:exported="true" />
+        <activity android:name=".WelcomeActivity" android:exported="true" />
+        <activity android:name=".NavActivity"
             android:exported="true"
             android:label="@string/title_activity_nav" />
-        <activity
-            android:name=".DashboardActivity"
-            android:exported="true" />
-        <activity
-            android:name=".RoomDetailsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ReservationActivity"
-            android:exported="true" />
-        <activity
-            android:name=".PaymentActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SignInActivity"
-            android:exported="true" />
-        <activity
-            android:name=".FindRoomActivity"
-            android:exported="false" />
-    </application>
+        <activity android:name=".DashboardActivity" android:exported="true" />
+        <activity android:name=".RoomDetailsActivity" android:exported="true" />
+        <activity android:name=".ReservationActivity" android:exported="true" />
+        <activity android:name=".PaymentActivity" android:exported="true" />
+        <activity android:name=".ForgotPasswordActivity" android:exported="true" />
+        <activity android:name=".SignUpActivity" android:exported="true" />
+        <activity android:name=".SignInActivity" android:exported="true" />
+        <activity android:name=".FindRoomActivity" android:exported="false" />
 
-    <uses-permission android:name="android.permission.INTERNET"
-        tools:ignore="ManifestOrder" />
+    </application>
 
 </manifest>

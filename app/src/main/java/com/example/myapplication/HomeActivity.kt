@@ -2,47 +2,34 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.FindRoomActivity
-import com.example.myapplication.HistoryActivity
-import com.example.myapplication.RoomDetailActivity
-import com.example.myapplication.ReservationActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_home) // Ensure you have the correct layout file
 
-        val btnSignIn = findViewById<Button>(R.id.btnSignIn)
-        btnSignIn.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
-        }
+        // Locate the BottomNavigationView
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        val btnFindRoom = findViewById<Button>(R.id.btnFindRoom)
-        btnFindRoom.setOnClickListener {
-            val intent = Intent(this, FindRoomActivity::class.java)
-            startActivity(intent)
-        }
+        bottomNavigationView.selectedItemId = R.id.navigation_home
 
-        val btnReservations = findViewById<Button>(R.id.btnReservations)
-        btnReservations.setOnClickListener {
-            val intent = Intent(this, ReservationActivity::class.java)
-            startActivity(intent)
-        }
-
-        val btnRoomDetails = findViewById<Button>(R.id.btnRoomDetails)
-        btnRoomDetails.setOnClickListener {
-            val intent = Intent(this, RoomDetailActivity::class.java)
-            startActivity(intent)
-        }
-
-        val btnHistory = findViewById<Button>(R.id.btnHistory)
-        btnHistory.setOnClickListener {
-            val intent = Intent(this, HistoryActivity::class.java)
-            startActivity(intent)
+        // Assign a listener to the BottomNavigationView
+        bottomNavigationView.setOnItemSelectedListener { menu ->
+            when (menu.itemId) {
+                R.id.navigation_home -> true // Do nothing, we're already here
+                R.id.navigation_notifications -> {
+                    startActivity(Intent(this, NotificationsActivity::class.java))
+                    true
+                }
+                R.id.navigation_profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
     }
 }

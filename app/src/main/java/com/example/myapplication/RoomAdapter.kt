@@ -1,42 +1,47 @@
 package com.example.myapplication
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import android.os.Parcel
+import android.os.Parcelable
 
-class RoomAdapter(private val context: Context, private val roomList: List<Room>) :
-    RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
+data class Room(
+    val name: String,
+    val price: Double,
+    val availability: Boolean,
+    val features: List<String>,
+    val imageURL: String  // Add imageURL as a String in the primary constructor
+) : Parcelable {
 
-    inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val roomType: TextView = itemView.findViewById(R.id.room_type)
-        val price: TextView = itemView.findViewById(R.id.room_price)
-        val description: TextView = itemView.findViewById(R.id.room_description)
-        val roomImage: ImageView = itemView.findViewById(R.id.room_image)
+    // Constructor to read data from the Parcel
+    constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",  // name (String)
+        parcel.readDouble(),  // price (Double)
+        parcel.readByte() != 0.toByte(),  // availability (Boolean)
+        parcel.createStringArrayList() ?: emptyList(),  // features (List<String>)
+        parcel.readString() ?: ""  // imageURL (String) - handle default value in case it's null
+    )
+
+    // Writing the data to the Parcel
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)  // Write name
+        parcel.writeDouble(price)  // Write price
+        parcel.writeByte(if (availability) 1 else 0)  // Write availability
+        parcel.writeStringList(features)  // Write features (List<String>)
+        parcel.writeString(imageURL)  // Write imageURL
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_room, parent, false)
-        return RoomViewHolder(view)
+    // Describes the contents of the Parcelable object
+    override fun describeContents(): Int {
+        return 0
     }
 
-    override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
-        val room = roomList[position]
-        holder.roomType.text = room.roomType
-        holder.price.text = "$${room.price}"
-        holder.description.text = room.description
+    // Companion object to create and restore the Room object from a Parcel
+    companion object CREATOR : Parcelable.Creator<Room> {
+        override fun createFromParcel(parcel: Parcel): Room {
+            return Room(parcel)
+        }
 
-        Glide.with(context)
-            .load(room.imageURL)
-            .into(holder.roomImage)
-    }
-
-    override fun getItemCount(): Int {
-        return roomList.size
+        override fun newArray(size: Int): Array<Room?> {
+            return arrayOfNulls(size)
+        }
     }
 }
-

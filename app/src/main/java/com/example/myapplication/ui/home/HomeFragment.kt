@@ -1,58 +1,41 @@
-package com.example.myapplication.ui.home
+package com.example.myapplication
 
-import android.os.Bundle
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
-import com.example.myapplication.Room
-import com.example.myapplication.RoomAdapter
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.firestore.FirebaseFirestore
+import com.bumptech.glide.Glide
+import android.widget.ImageView
 
-class HomeFragment : Fragment() {
+class RoomAdapter(private val context: Context, private val roomList: List<Room>) :
+    RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
 
-    private lateinit var roomsRecyclerView: RecyclerView
-    private lateinit var roomsAdapter: RoomAdapter
-    private val roomList = mutableListOf<Room>()
-    private val firestore by lazy { FirebaseFirestore.getInstance() }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-
-        roomsRecyclerView = view.findViewById(R.id.roomsRecyclerView)
-        roomsRecyclerView.layoutManager = LinearLayoutManager(context)
-
-        roomsAdapter = RoomAdapter(requireContext(), roomList)
-        roomsRecyclerView.adapter = roomsAdapter
-
-        loadRooms()
-
-        return view
+    inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val roomType: TextView = itemView.findViewById(R.id.room_type)
+        val price: TextView = itemView.findViewById(R.id.room_price)
+        val description: TextView = itemView.findViewById(R.id.room_description)
+        val roomImage: ImageView = itemView.findViewById(R.id.room_image)
     }
 
-    private fun loadRooms() {
-        firestore.collection("rooms")
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                roomList.clear()
-                for (doc in querySnapshot) {
-                    val room = doc.toObject(Room::class.java)
-                    roomList.add(room)
-                }
-                roomsAdapter.notifyDataSetChanged()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(context, "Failed to load data: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_room, parent, false)
+        return RoomViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
+        val room = roomList[position]
+        holder.roomType.text = room.name
+        holder.price.text = "$${room.price}"
+        holder.description.text = room.features.joinToString(", ")
+
+        Glide.with(context)
+            .load(room.imageURL)
+            .into(holder.roomImage)
+    }
+
+    override fun getItemCount(): Int {
+        return roomList.size
     }
 }

@@ -54,3 +54,7 @@ class FirstPaymentActivity : AppCompatActivity() {
         }
     }
 }
+
+class BookingConfirmationActivity {
+
+}
