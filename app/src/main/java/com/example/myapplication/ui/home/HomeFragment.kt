@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.home
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import android.widget.ImageView
+import com.example.myapplication.R
+import com.example.myapplication.Room
 
 class RoomAdapter(private val context: Context, private val roomList: List<Room>) :
     RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {

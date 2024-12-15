@@ -7,7 +7,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.R
 import java.util.*
 
 class ReservationActivity : AppCompatActivity() {
@@ -70,3 +69,8 @@ class ReservationActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 }
+data class Reservation(
+    val roomName: String,
+    val startDate: String,
+    val endDate: String
+)

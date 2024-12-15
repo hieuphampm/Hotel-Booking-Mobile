@@ -9,14 +9,15 @@ class NotificationsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home) // Đảm bảo bạn có file XML phù hợp
+        setContentView(R.layout.activity_home) // Ensure you have the correct layout file
 
-        // Tìm kiếm BottomNavigationView
+        // Locate the BottomNavigationView
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.selectedItemId = R.id.navigation_notifications
 
-        // Gán listener cho BottomNavigationView
+        // Assign a listener to the BottomNavigationView
         bottomNavigationView.setOnItemSelectedListener { menu ->
-            when (menu.itemId) { // Sửa lại để dùng itemId
+            when (menu.itemId) {
                 R.id.navigation_home -> {
                     startActivity(Intent(this, HomeActivity::class.java))
                     true
@@ -31,6 +32,19 @@ class NotificationsActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+    }
+
+    // Override onBackPressed to handle the back button behavior
+    override fun onBackPressed() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        // If the current selected tab is not Home, navigate back to Home
+        if (bottomNavigationView.selectedItemId != R.id.navigation_notifications) {
+            bottomNavigationView.selectedItemId = R.id.navigation_notifications
+        } else {
+            // If already on the Home tab, use the default back behavior
+            super.onBackPressed()
         }
     }
 }

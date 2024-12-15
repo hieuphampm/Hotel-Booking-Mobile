@@ -6,9 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-// Import the Reservation class if it's in a different file
-import com.example.myapplication.Reservation
-
 class HistoryAdapter(private var historyList: List<Reservation>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -18,20 +15,22 @@ class HistoryAdapter(private var historyList: List<Reservation>) : RecyclerView.
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val reservation = historyList[position]
-        holder.roomName.text = reservation.roomName
-        holder.startDate.text = reservation.startDate
-        holder.endDate.text = reservation.endDate
+        holder.roomName.text = reservation.roomName  // Using roomName from Reservation class
+        holder.startDate.text = reservation.startDate  // Using startDate from Reservation class
+        holder.endDate.text = reservation.endDate  // Using endDate from Reservation class
     }
 
     override fun getItemCount(): Int {
         return historyList.size
     }
 
+    // Update the list of reservations and notify the adapter
     fun updateList(newList: List<Reservation>) {
         historyList = newList
         notifyDataSetChanged()
     }
 
+    // ViewHolder to hold the views for each item in the list
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val roomName: TextView = itemView.findViewById(R.id.room_name)
         val startDate: TextView = itemView.findViewById(R.id.start_date)

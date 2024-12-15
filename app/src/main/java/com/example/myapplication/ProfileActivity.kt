@@ -9,14 +9,17 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home) // Đảm bảo bạn có file XML phù hợp
+        setContentView(R.layout.activity_home) // Ensure this XML file is the correct one
 
-        // Tìm kiếm BottomNavigationView
+        // Find the BottomNavigationView
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        // Gán listener cho BottomNavigationView
+        // Set the initial selected item for the navigation view (in case ProfileActivity is the starting point)
+        bottomNavigationView.selectedItemId = R.id.navigation_profile
+
+        // Set listener for item selection
         bottomNavigationView.setOnItemSelectedListener { menu ->
-            when (menu.itemId) { // Sửa lại để dùng itemId
+            when (menu.itemId) {
                 R.id.navigation_home -> {
                     startActivity(Intent(this, HomeActivity::class.java))
                     true
@@ -26,11 +29,25 @@ class ProfileActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_profile -> {
-                    startActivity(Intent(this, ProfileActivity::class.java))
+                    // If ProfileActivity is already selected, don't reload it
+                    // This will keep the icon selected as the user is already on the Profile page
                     true
                 }
                 else -> false
             }
+        }
+    }
+
+    // Override onBackPressed to handle the back button behavior
+    override fun onBackPressed() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        // If the current selected tab is not Home, navigate back to Home
+        if (bottomNavigationView.selectedItemId != R.id.navigation_profile) {
+            bottomNavigationView.selectedItemId = R.id.navigation_profile
+        } else {
+            // If already on the Home tab, use the default back behavior
+            super.onBackPressed()
         }
     }
 }

@@ -3,7 +3,7 @@ package com.example.myapplication
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Room(
+data class HotelRoom(
     val name: String,
     val price: Double,
     val availability: Boolean,
@@ -35,12 +35,12 @@ data class Room(
     }
 
     // Companion object to create and restore the Room object from a Parcel
-    companion object CREATOR : Parcelable.Creator<Room> {
-        override fun createFromParcel(parcel: Parcel): Room {
-            return Room(parcel)
+    companion object CREATOR : Parcelable.Creator<HotelRoom> {
+        override fun createFromParcel(parcel: Parcel): HotelRoom {
+            return HotelRoom(parcel)
         }
 
-        override fun newArray(size: Int): Array<Room?> {
+        override fun newArray(size: Int): Array<HotelRoom?> {
             return arrayOfNulls(size)
         }
     }
