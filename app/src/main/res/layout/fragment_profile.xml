@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <!-- Title for Settings -->
     <TextView
         android:id="@+id/tvSettingsTitle"
         android:layout_width="wrap_content"
@@ -19,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- User Information Section -->
     <LinearLayout
         android:id="@+id/llUserInfo"
         android:layout_width="0dp"
@@ -47,7 +45,6 @@
             android:textColor="@color/black" />
     </LinearLayout>
 
-    <!-- Settings Options -->
     <LinearLayout
         android:id="@+id/llSettingsOptions"
         android:layout_width="0dp"
@@ -59,7 +56,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Example Setting Option 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,7 +89,6 @@
 
         </LinearLayout>
 
-        <!-- Example Setting Option 3 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,7 +106,19 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Bottom Navigation -->
+    <android.widget.Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="50dp"
+        android:text="Log Out"
+        android:textColor="@color/white"
+        android:background="@drawable/hover_btn"
+        tools:ignore="HardcodedText" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
