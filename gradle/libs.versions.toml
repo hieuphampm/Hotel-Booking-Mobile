@@ -3,6 +3,7 @@ agp = "8.7.3"
 appcompatVersion = "1.5.1"
 circleimageview = "3.1.0"
 firebaseAuth = "22.1.1"
+firebaseAuthVersion = "21.0.7"
 firebaseBom = "33.7.0"
 firebaseCore = "21.1.1"
 firebaseDatabase = "20.3.2"
@@ -34,6 +35,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuth" }
+firebase-auth-v2107 = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuthVersion" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "firebaseCore" }
 firebase-database = { module = "com.google.firebase:firebase-database", version.ref = "firebaseDatabase" }
