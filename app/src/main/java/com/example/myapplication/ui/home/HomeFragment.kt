@@ -31,10 +31,8 @@ class HomeFragment : Fragment() {
         roomsRecyclerView = view.findViewById(R.id.roomsRecyclerView)
         roomsRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Khởi tạo RoomAdapter với sự kiện click
         roomsAdapter = RoomAdapter(requireContext(), roomList, object : RoomAdapter.OnRoomClickListener {
             override fun onRoomClick(room: Room) {
-                // Mở RoomDetailsActivity và truyền thông tin phòng
                 val intent = Intent(requireContext(), RoomDetailsActivity::class.java)
                 intent.putExtra("ROOM_ID", room.id)
                 startActivity(intent)
