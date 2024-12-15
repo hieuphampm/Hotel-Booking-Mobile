@@ -9,7 +9,7 @@ class NotificationsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home) // Ensure you have the correct layout file
+        setContentView(R.layout.fragment_notifications) // Ensure you have the correct layout file
 
         // Locate the BottomNavigationView
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)

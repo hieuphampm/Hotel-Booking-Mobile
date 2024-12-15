@@ -9,7 +9,7 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home) // Ensure this XML file is the correct one
+        setContentView(R.layout.fragment_profile) // Ensure this XML file is the correct one
 
         // Find the BottomNavigationView
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)

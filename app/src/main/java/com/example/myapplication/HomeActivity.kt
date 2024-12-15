@@ -9,7 +9,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home) // Ensure this XML file is correct
+        setContentView(R.layout.fragment_home) // Ensure this XML file is correct
 
         // Find the BottomNavigationView
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
