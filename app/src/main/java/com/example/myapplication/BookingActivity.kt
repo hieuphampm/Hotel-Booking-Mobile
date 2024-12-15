@@ -21,6 +21,7 @@ class BookingActivity : AppCompatActivity() {
 
     private var roomPricePerDay: Double = 0.0
     private var roomId: String? = null
+    private var totalPrice: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +91,7 @@ class BookingActivity : AppCompatActivity() {
         }
 
         val servicesCost = selectedServices.sumOf { it.second }
-        val totalPrice = (daysDifference * roomPricePerDay) + servicesCost
+        totalPrice = (daysDifference * roomPricePerDay) + servicesCost
 
         totalPriceTextView.text = "Total Price: ${formatCurrency(totalPrice)}"
     }
@@ -113,19 +114,23 @@ class BookingActivity : AppCompatActivity() {
             return
         }
 
+        val servicesCost = selectedServices.sumOf { it.second }
+        val daysDifference = ceil(((checkOutDate.time - checkInDate.time) / (1000 * 60 * 60 * 24)).toDouble()).toInt()
+        totalPrice = (daysDifference * roomPricePerDay) + servicesCost
+
         val bookingDetails = mapOf(
             "roomId" to roomId,
             "checkInDate" to SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(checkInDate),
             "checkOutDate" to SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(checkOutDate),
             "selectedServices" to selectedServices.map { it.first },
-            "totalPrice" to totalPriceTextView.text.toString()
+            "totalPrice" to totalPrice
         )
 
         firestore.collection("bookings")
             .add(bookingDetails)
             .addOnSuccessListener {
                 val intent = Intent(this, PaymentActivity::class.java)
-                intent.putExtra("TOTAL_PRICE", totalPriceTextView.text.toString())
+                intent.putExtra("TOTAL_PRICE", totalPrice)
                 startActivity(intent)
             }
             .addOnFailureListener { e ->

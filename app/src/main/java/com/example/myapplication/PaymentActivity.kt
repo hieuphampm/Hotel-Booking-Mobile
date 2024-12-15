@@ -1,115 +1,122 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.NumberFormat
+import java.util.Locale
 
-class PaymentActivity : AppCompatActivity() {
+class PaymentActivity : AppCompatActivity(), AddCardFragment.OnCardAddedListener {
 
-    private lateinit var cardNumber: EditText
-    private lateinit var cardholderName: EditText
-    private lateinit var expiryDate: EditText
-    private lateinit var cvv: EditText
-    private lateinit var paymentMethodSpinner: Spinner
-    private lateinit var confirmPaymentButton: Button
+    private lateinit var tvTotalPrice: TextView
+    private lateinit var spinnerPaymentMethod: Spinner
+    private lateinit var listViewCards: ListView
+    private lateinit var btnAddCard: Button
+    private lateinit var btnPay: Button
 
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var databaseReference: DatabaseReference
-    private lateinit var firestore: FirebaseFirestore
+    private val firestore by lazy { FirebaseFirestore.getInstance() }
+    private val cardList = mutableListOf<String>()
+    private lateinit var cardAdapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
-//        val totalPrice = intent.getStringExtra("TOTAL_PRICE")
-//        findViewById<TextView>(R.id.tvPaymentTotal).text = "Total Amount: $totalPrice"
+        tvTotalPrice = findViewById(R.id.tvTotalPrice)
+        spinnerPaymentMethod = findViewById(R.id.spinnerPaymentMethod)
+        listViewCards = findViewById(R.id.listViewCards)
+        btnAddCard = findViewById(R.id.btnAddCard)
+        btnPay = findViewById(R.id.btnPay)
 
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.getReference("Payments")
-        firestore = FirebaseFirestore.getInstance()
+        val totalPrice = intent.getDoubleExtra("TOTAL_PRICE", 0.0)
+        tvTotalPrice.text = "Total Price: ${formatCurrency(totalPrice)}"
 
-        cardNumber = findViewById(R.id.card_number)
-        cardholderName = findViewById(R.id.cardholder_name)
-        expiryDate = findViewById(R.id.expiry_date)
-        cvv = findViewById(R.id.cvv)
-        paymentMethodSpinner = findViewById(R.id.payment_method_spinner)
-        confirmPaymentButton = findViewById(R.id.confirm_payment_button)
+        setupSpinner()
+        setupCardList()
+        loadCardsFromFirebase()
 
-        paymentMethodSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedMethod = parent?.getItemAtPosition(position).toString()
-                if (selectedMethod == "Cash") {
-                    toggleCardFieldsVisibility(false)
-                } else {
-                    toggleCardFieldsVisibility(true)
-                }
+        btnAddCard.setOnClickListener {
+            showAddCardFragment()
+        }
+
+        btnPay.setOnClickListener {
+            val selectedMethod = spinnerPaymentMethod.selectedItem.toString()
+
+            if (selectedMethod == "Card" && cardList.isEmpty()) {
+                Toast.makeText(this, "Please add a card before proceeding", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            val intent = Intent(this, SuccessActivity::class.java)
+            intent.putExtra("PAYMENT_METHOD", selectedMethod)
+            intent.putExtra("TOTAL_PRICE", totalPrice)
+            startActivity(intent)
         }
 
-        confirmPaymentButton.setOnClickListener {
-            savePaymentData()
+        // Lắng nghe sự thay đổi phương thức thanh toán để ẩn/hiện nút Add Card
+        spinnerPaymentMethod.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val selectedMethod = spinnerPaymentMethod.selectedItem.toString()
+                btnAddCard.visibility = if (selectedMethod == "Card") View.VISIBLE else View.GONE
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+                btnAddCard.visibility = View.GONE
+            }
         }
     }
 
-    private fun toggleCardFieldsVisibility(show: Boolean) {
-        val visibility = if (show) View.VISIBLE else View.GONE
-        cardNumber.visibility = visibility
-        cardholderName.visibility = visibility
-        expiryDate.visibility = visibility
-        cvv.visibility = visibility
+    private fun setupSpinner() {
+        val paymentMethods = listOf("Card", "Cash", "Bank Transfer")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, paymentMethods)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerPaymentMethod.adapter = adapter
     }
 
-    private fun savePaymentData() {
-        val paymentMethod = paymentMethodSpinner.selectedItem.toString()
+    private fun setupCardList() {
+        cardAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, cardList)
+        listViewCards.adapter = cardAdapter
+    }
 
-        if (paymentMethod == "Cash") {
-            val paymentData = hashMapOf(
-                "PaymentMethod" to paymentMethod
-            )
-
-            firestore.collection("Payments").add(paymentData)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Payment saved successfully!", Toast.LENGTH_SHORT).show()
+    private fun loadCardsFromFirebase() {
+        firestore.collection("cards").get()
+            .addOnSuccessListener { result ->
+                cardList.clear()
+                for (document in result) {
+                    val cardInfo = document.getString("cardInfo")
+                    if (cardInfo != null) {
+                        cardList.add(cardInfo)
+                    }
                 }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Failed to save payment", Toast.LENGTH_SHORT).show()
-                    Log.e("Firestore", "Error saving payment", e)
-                }
-            return
-        }
-
-        val cardNum = cardNumber.text.toString().trim()
-        val holderName = cardholderName.text.toString().trim()
-        val expDate = expiryDate.text.toString().trim()
-        val cardCVV = cvv.text.toString().trim()
-
-        if (cardNum.isEmpty() || holderName.isEmpty() || expDate.isEmpty() || cardCVV.isEmpty()) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val paymentData = hashMapOf(
-            "CardNumber" to cardNum,
-            "CardholderName" to holderName,
-            "ExpiryDate" to expDate,
-            "CVV" to cardCVV,
-            "PaymentMethod" to paymentMethod
-        )
-
-        firestore.collection("Payments").add(paymentData)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Payment saved successfully!", Toast.LENGTH_SHORT).show()
+                cardAdapter.notifyDataSetChanged()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Failed to save payment", Toast.LENGTH_SHORT).show()
-                Log.e("Firestore", "Error saving payment", e)
+                Toast.makeText(this, "Failed to load cards: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun formatCurrency(amount: Double): String {
+        val currencyFormatter = NumberFormat.getCurrencyInstance(Locale("vi", "VN"))
+        return currencyFormatter.format(amount)
+    }
+
+    private fun showAddCardFragment() {
+        val fragment = AddCardFragment()
+        fragment.show(supportFragmentManager, "AddCardFragment")
+    }
+
+    override fun onCardAdded(cardInfo: String) {
+        firestore.collection("cards").add(mapOf("cardInfo" to cardInfo))
+            .addOnSuccessListener {
+                cardList.add(cardInfo)
+                cardAdapter.notifyDataSetChanged()
+                Toast.makeText(this, "Card saved successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Failed to add card: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }
