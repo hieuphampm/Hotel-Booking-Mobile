@@ -1,20 +1,27 @@
 package com.example.myapplication.ui.notifications
 
+import android.app.Notification
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.AppNotification
+import com.example.myapplication.NotificationsAdapter
 import com.example.myapplication.R
-
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class NotificationsFragment : Fragment() {
 
     private lateinit var notificationsAdapter: NotificationsAdapter
     private lateinit var notificationsRecyclerView: RecyclerView
+    private val firestore by lazy { FirebaseFirestore.getInstance() }
+    private val notifications = mutableListOf<AppNotification>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,54 +29,52 @@ class NotificationsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_notifications, container, false)
 
-        // Initialize RecyclerView
         notificationsRecyclerView = view.findViewById(R.id.rvNotifications)
         notificationsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Initialize data
-        val notifications = listOf(
-            Notification("Your booking is confirmed!", "Hotel Sunshine, Room 305"),
-            Notification("Check-in reminder", "Don’t forget to check-in tomorrow at Hotel Blossom."),
-            Notification("Special Offer", "Get 10% off on your next booking. Limited time offer!"),
-            Notification("Room Upgrade!", "Your room has been upgraded to a deluxe suite."),
-        )
-
-        // Set adapter
         notificationsAdapter = NotificationsAdapter(notifications)
         notificationsRecyclerView.adapter = notificationsAdapter
 
+        listenForNotifications()
+
         return view
     }
-}
 
-// Data model for Notification
-data class Notification(val title: String, val description: String)
+    private fun listenForNotifications() {
+        firestore.collection("notifications")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
+                }
 
-// Adapter for RecyclerView
-class NotificationsAdapter(private val notifications: List<Notification>) :
-    RecyclerView.Adapter<NotificationsAdapter.NotificationViewHolder>() {
+                if (snapshot != null) {
+                    notifications.clear()
+                    for (doc in snapshot.documents) {
+                        val title = doc.getString("title") ?: "No Title"
+                        val description = doc.getString("description") ?: "No Description"
+                        val roomId = doc.getString("roomType") ?: ""
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_notification, parent, false)
-        return NotificationViewHolder(view)
+                        if (roomId.isNotEmpty()) {
+                            firestore.collection("rooms").document(roomId)
+                                .get()
+                                .addOnSuccessListener { roomDoc ->
+                                    val roomType = roomDoc.getString("roomType") ?: "Unknown Room"
+                                    notifications.add(AppNotification(title, description, roomType))
+                                    notificationsAdapter.notifyDataSetChanged()
+                                }
+                                .addOnFailureListener {
+                                    notifications.add(AppNotification(title, description, "Unknown Room"))
+                                    notificationsAdapter.notifyDataSetChanged()
+                                }
+                        } else {
+                            notifications.add(AppNotification(title, description, "Unknown Room"))
+                            notificationsAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+            }
     }
 
-    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        val notification = notifications[position]
-        holder.bind(notification)
-    }
-
-    override fun getItemCount(): Int = notifications.size
-
-    // ViewHolder for Notification item
-    class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val titleTextView: TextView = itemView.findViewById(R.id.tvNotificationTitle)
-        private val descriptionTextView: TextView = itemView.findViewById(R.id.tvNotificationDescription)
-
-        fun bind(notification: Notification) {
-            titleTextView.text = notification.title
-            descriptionTextView.text = notification.description
-        }
-    }
 }

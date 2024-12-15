@@ -52,27 +52,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/btnAddCard" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btnAddCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Add Card"
         android:visibility="gone"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/design_default_color_primary"
+        android:background="@drawable/hover_btn"
         android:textColor="@android:color/white"
         android:padding="12dp"
         tools:ignore="HardcodedText"
         app:layout_constraintTop_toBottomOf="@+id/listViewCards"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btnPay"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Proceed to Pay"
-        android:backgroundTint="@color/design_default_color_primary"
+        android:background="@drawable/hover_btn"
         android:textColor="@android:color/white"
         android:padding="12dp"
         android:layout_marginTop="16dp"
