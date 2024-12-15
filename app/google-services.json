@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "101761843987",
+    "firebase_url": "https://hotel-63cd3-default-rtdb.firebaseio.com",
     "project_id": "hotel-63cd3",
     "storage_bucket": "hotel-63cd3.firebasestorage.app"
   },
@@ -21,6 +22,43 @@
             "certificate_hash": "f852668051a1c0e40061d43d5d07f567bef36820"
           }
         },
+        {
+          "client_id": "101761843987-808lf8ijsiscos32g0e6c9es0ck3h5tg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "a852b1f045c7ca357a62eff57fa5ee0819d1840a"
+          }
+        },
+        {
+          "client_id": "101761843987-mtgs8ont15jop7hl7qcgphdg2n4jdleh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6foGTEdsz317sz5FK7oeuOGJoLGvQ1_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101761843987-mtgs8ont15jop7hl7qcgphdg2n4jdleh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101761843987:android:ee46090cd52f7390e490e6",
+        "android_client_info": {
+          "package_name": "com.example.w9"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "101761843987-mtgs8ont15jop7hl7qcgphdg2n4jdleh.apps.googleusercontent.com",
           "client_type": 3

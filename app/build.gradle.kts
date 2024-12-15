@@ -75,4 +75,5 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.firebase.core)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth.v2107)
 }
