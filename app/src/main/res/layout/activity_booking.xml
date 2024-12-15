@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,13 +11,13 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Check-in Date -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Check-in Date"
             android:textSize="16sp"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="8dp"
+            tools:ignore="HardcodedText" />
 
         <DatePicker
             android:id="@+id/datePickerCheckIn"
@@ -26,18 +27,17 @@
             android:calendarViewShown="false"
             android:spinnersShown="true" />
 
-        <!-- Spacer -->
         <View
             android:layout_width="match_parent"
             android:layout_height="16dp" />
 
-        <!-- Check-out Date -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Check-out Date"
             android:textSize="16sp"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="8dp"
+            tools:ignore="HardcodedText" />
 
         <DatePicker
             android:id="@+id/datePickerCheckOut"
@@ -47,16 +47,15 @@
             android:calendarViewShown="false"
             android:spinnersShown="true" />
 
-        <!-- Room Price -->
         <TextView
             android:id="@+id/tvRoomPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Room Price"
             android:padding="8dp"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
-        <!-- Service List -->
         <LinearLayout
             android:id="@+id/serviceContainer"
             android:layout_width="match_parent"
@@ -64,7 +63,6 @@
             android:orientation="vertical"
             android:padding="8dp" />
 
-        <!-- Total Price -->
         <TextView
             android:id="@+id/tvTotalPrice"
             android:layout_width="match_parent"
@@ -72,15 +70,18 @@
             android:text="Total Price"
             android:padding="8dp"
             android:textSize="16sp"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            tools:ignore="HardcodedText" />
 
-        <!-- Confirm Button -->
-        <Button
+        <android.widget.Button
             android:id="@+id/btnConfirmBooking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Confirm Booking"
+            android:textColor="@color/white"
+            android:background="@drawable/hover_btn"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
     </LinearLayout>
 </ScrollView>

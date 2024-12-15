@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.notifications.NotificationsFragment">
 
-    <!-- Title for Notifications -->
+
     <TextView
         android:id="@+id/tvNotificationsTitle"
         android:layout_width="wrap_content"
@@ -15,13 +15,13 @@
         android:layout_margin="16dp"
         android:text="Notifications"
         android:textSize="20sp"
-        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textColor="@color/tealBlue"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="HardcodedText" />
 
-    <!-- RecyclerView for displaying notifications -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNotifications"
         android:layout_width="0dp"
@@ -32,7 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
