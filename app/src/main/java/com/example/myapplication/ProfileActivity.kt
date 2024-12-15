@@ -3,21 +3,28 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.myapplication.ui.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_profile) // Ensure this XML file is the correct one
+        setContentView(R.layout.activity_home) // Ensure this XML file has `bottomNavigationView` and `fragmentContainer`
+
+        // Load the ProfileFragment when the activity is created
+        if (savedInstanceState == null) {
+            loadFragment(ProfileFragment())
+        }
 
         // Find the BottomNavigationView
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        // Set the initial selected item for the navigation view (in case ProfileActivity is the starting point)
+        // Set the selected item as Profile
         bottomNavigationView.selectedItemId = R.id.navigation_profile
 
-        // Set listener for item selection
+        // Set listener for navigation item selection
         bottomNavigationView.setOnItemSelectedListener { menu ->
             when (menu.itemId) {
                 R.id.navigation_home -> {
@@ -29,8 +36,7 @@ class ProfileActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_profile -> {
-                    // If ProfileActivity is already selected, don't reload it
-                    // This will keep the icon selected as the user is already on the Profile page
+                    // Do nothing as the user is already on ProfileActivity
                     true
                 }
                 else -> false
@@ -38,15 +44,22 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    // Override onBackPressed to handle the back button behavior
+    // Method to load fragments into the container
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+    }
+
+    // Override the back button behavior
     override fun onBackPressed() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        // If the current selected tab is not Home, navigate back to Home
-        if (bottomNavigationView.selectedItemId != R.id.navigation_profile) {
-            bottomNavigationView.selectedItemId = R.id.navigation_profile
+        // Navigate back to the Home tab if the current tab is not Profile
+        if (bottomNavigationView.selectedItemId != R.id.navigation_home) {
+            bottomNavigationView.selectedItemId = R.id.navigation_home
         } else {
-            // If already on the Home tab, use the default back behavior
+            // Default behavior if already on the Home tab
             super.onBackPressed()
         }
     }

@@ -3,19 +3,28 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.myapplication.ui.notifications.NotificationsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class NotificationsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_notifications) // Ensure you have the correct layout file
+        setContentView(R.layout.activity_home) // Ensure this layout has `bottomNavigationView` and `fragmentContainer`
 
-        // Locate the BottomNavigationView
+        // Load the NotificationsFragment when the activity is created
+        if (savedInstanceState == null) {
+            loadFragment(NotificationsFragment())
+        }
+
+        // Find the BottomNavigationView
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        // Set the selected item as Notifications
         bottomNavigationView.selectedItemId = R.id.navigation_notifications
 
-        // Assign a listener to the BottomNavigationView
+        // Set listener for navigation item selection
         bottomNavigationView.setOnItemSelectedListener { menu ->
             when (menu.itemId) {
                 R.id.navigation_home -> {
@@ -23,7 +32,7 @@ class NotificationsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_notifications -> {
-                    startActivity(Intent(this, NotificationsActivity::class.java))
+                    // Do nothing as the user is already on NotificationsActivity
                     true
                 }
                 R.id.navigation_profile -> {
@@ -35,15 +44,22 @@ class NotificationsActivity : AppCompatActivity() {
         }
     }
 
-    // Override onBackPressed to handle the back button behavior
+    // Method to load fragments into the container
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+    }
+
+    // Override the back button behavior
     override fun onBackPressed() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        // If the current selected tab is not Home, navigate back to Home
-        if (bottomNavigationView.selectedItemId != R.id.navigation_notifications) {
-            bottomNavigationView.selectedItemId = R.id.navigation_notifications
+        // Navigate back to Home if the current tab is not Notifications
+        if (bottomNavigationView.selectedItemId != R.id.navigation_home) {
+            bottomNavigationView.selectedItemId = R.id.navigation_home
         } else {
-            // If already on the Home tab, use the default back behavior
+            // Default behavior if already on the Home tab
             super.onBackPressed()
         }
     }
