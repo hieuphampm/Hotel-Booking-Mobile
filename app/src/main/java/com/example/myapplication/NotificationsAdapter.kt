@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.app.Notification
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,9 +23,11 @@ class NotificationsAdapter(private val notifications: List<AppNotification>) :
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
         val notification = notifications[position]
+
         holder.titleTextView.text = notification.title
         holder.descriptionTextView.text = notification.description
-        holder.roomTypeTextView.text = notification.roomType
+
+        holder.roomTypeTextView.text = notification.roomType.ifEmpty { "Unknown Room Type" }
     }
 
     override fun getItemCount() = notifications.size
