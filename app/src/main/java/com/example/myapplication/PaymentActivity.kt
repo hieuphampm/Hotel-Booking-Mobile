@@ -26,6 +26,9 @@ class PaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
+//        val totalPrice = intent.getStringExtra("TOTAL_PRICE")
+//        findViewById<TextView>(R.id.tvPaymentTotal).text = "Total Amount: $totalPrice"
+
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase.getReference("Payments")
         firestore = FirebaseFirestore.getInstance()
