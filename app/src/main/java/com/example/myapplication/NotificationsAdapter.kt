@@ -12,7 +12,6 @@ class NotificationsAdapter(private val notifications: List<AppNotification>) :
     class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.tvNotificationTitle)
         val descriptionTextView: TextView = itemView.findViewById(R.id.tvNotificationDescription)
-        val roomTypeTextView: TextView = itemView.findViewById(R.id.tvRoomType)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
@@ -26,8 +25,6 @@ class NotificationsAdapter(private val notifications: List<AppNotification>) :
 
         holder.titleTextView.text = notification.title
         holder.descriptionTextView.text = notification.description
-
-        holder.roomTypeTextView.text = notification.roomType.ifEmpty { "Unknown Room Type" }
     }
 
     override fun getItemCount() = notifications.size
