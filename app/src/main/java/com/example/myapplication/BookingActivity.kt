@@ -46,6 +46,8 @@ class BookingActivity : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 val room = document.toObject(Room::class.java)
                 if (room != null) {
+                    findViewById<TextView>(R.id.tvRoomName).text = "Room: ${room.roomType}"
+
                     roomPricePerDay = room.price
                     findViewById<TextView>(R.id.tvRoomPrice).text = "Room Price: ${formatCurrency(roomPricePerDay)}"
 
@@ -79,6 +81,7 @@ class BookingActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to load room details: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     private fun calculateTotalPrice() {
         val checkInDate = getDateFromPicker(checkInPicker)
@@ -129,14 +132,29 @@ class BookingActivity : AppCompatActivity() {
         firestore.collection("bookings")
             .add(bookingDetails)
             .addOnSuccessListener {
-                val intent = Intent(this, PaymentActivity::class.java)
-                intent.putExtra("TOTAL_PRICE", totalPrice)
-                startActivity(intent)
+                val notification = mapOf(
+                    "title" to "Successful Payment",
+                    "description" to "Payment of ${formatCurrency(totalPrice)} for your booking was successful.",
+                    "timestamp" to System.currentTimeMillis()
+                )
+
+                firestore.collection("notifications")
+                    .add(notification)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Booking confirmed and notification sent!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, PaymentActivity::class.java)
+                        intent.putExtra("TOTAL_PRICE", totalPrice)
+                        startActivity(intent)
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Failed to send notification: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Failed to confirm booking: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     private fun formatCurrency(amount: Double): String {
         val currencyFormatter = NumberFormat.getCurrencyInstance(Locale("vi", "VN"))

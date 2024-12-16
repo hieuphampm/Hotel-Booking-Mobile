@@ -17,6 +17,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentSnapshot
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class NotificationsFragment : Fragment() {
 
@@ -54,56 +57,17 @@ class NotificationsFragment : Fragment() {
 
                 if (snapshot != null) {
                     notifications.clear()
-
-                    val roomFetchTasks = mutableListOf<Task<DocumentSnapshot>>()
-
                     for (doc in snapshot.documents) {
                         val title = doc.getString("title") ?: "No Title"
                         val description = doc.getString("description") ?: "No Description"
-                        val roomId = doc.getString("roomType") ?: ""
+                        val timestamp = doc.getLong("timestamp") ?: 0L
 
-                        if (roomId.isNotEmpty()) {
-                            val roomTask = firestore.collection("rooms").document(roomId)
-                                .get()
-                                .addOnSuccessListener { roomDoc ->
-                                    val roomType = roomDoc.getString("roomType") ?: "Unknown Room"
-                                    val price = roomDoc.getDouble("price") ?: 0.0
-
-                                    val updatedNotification = AppNotification(
-                                        title,
-                                        "Payment for $roomType: ${price.toInt()} VND",
-                                        roomType
-                                    )
-
-                                    notifications.add(updatedNotification)
-
-                                    if (notifications.size == snapshot.documents.size) {
-                                        notificationsAdapter.notifyDataSetChanged()
-                                    }
-                                }
-                                .addOnFailureListener {
-                                    notifications.add(AppNotification(title, "Payment for Unknown Room", "Unknown Room"))
-
-                                    if (notifications.size == snapshot.documents.size) {
-                                        notificationsAdapter.notifyDataSetChanged()
-                                    }
-                                }
-
-                            roomFetchTasks.add(roomTask)
-                        } else {
-                            notifications.add(AppNotification(title, "Payment for Unknown Room", "Unknown Room"))
-
-                            if (notifications.size == snapshot.documents.size) {
-                                notificationsAdapter.notifyDataSetChanged()
-                            }
-                        }
+                        notifications.add(AppNotification(title, description, SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date(timestamp))))
                     }
-
-                    Tasks.whenAllSuccess<DocumentSnapshot>(*roomFetchTasks.toTypedArray())
-                        .addOnCompleteListener {
-                            notificationsAdapter.notifyDataSetChanged()
-                        }
+                    notificationsAdapter.notifyDataSetChanged()
                 }
             }
     }
+
+
 }
