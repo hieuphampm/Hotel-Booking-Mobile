@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import com.example.myapplication.WelcomeActivity
+import com.example.myapplication.PolicyActivity
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
@@ -34,17 +35,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
         }
 
-        val optionChangePassword: TextView = view.findViewById(R.id.tvSettingOption1)
-        val optionPrivacyPolicy: TextView = view.findViewById(R.id.tvSettingOption2)
-
-        optionChangePassword.setOnClickListener {
-            Toast.makeText(requireContext(), "Change Password clicked", Toast.LENGTH_SHORT).show()
-        }
-
-        optionPrivacyPolicy.setOnClickListener {
-            Toast.makeText(requireContext(), "Privacy Policy clicked", Toast.LENGTH_SHORT).show()
-        }
-
         val btnLogOut: View = view.findViewById(R.id.btnLogOut)
         btnLogOut.setOnClickListener {
             auth.signOut()
@@ -52,6 +42,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             val intent = Intent(requireContext(), WelcomeActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
+        }
+
+        val btnPolicy: View = view.findViewById(R.id.btnPolicy)
+        btnPolicy.setOnClickListener {
+            val intent = Intent(requireContext(), PolicyActivity::class.java)
+            intent.putExtra("policy_text", getString(R.string.privacy_policy_text))
+            startActivity(intent)
         }
     }
 }
