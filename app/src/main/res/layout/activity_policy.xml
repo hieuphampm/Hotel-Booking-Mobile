@@ -19,12 +19,14 @@
         app:layout_constraintBottom_toTopOf="@id/btnBack"
         android:scrollbars="vertical" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="Back"
+        android:background="@drawable/hover_btn"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
