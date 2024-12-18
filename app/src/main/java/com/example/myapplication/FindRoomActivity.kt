@@ -26,8 +26,6 @@ class FindRoomActivity : AppCompatActivity() {
         }
     }
 
-<<<<<<< Updated upstream
-=======
     private fun getDummyRooms(): List<Room> {
         return listOf(
             Room("Room 1", 100.0, true, listOf("Wi-Fi", "Air Conditioning")),
@@ -36,6 +34,4 @@ class FindRoomActivity : AppCompatActivity() {
             Room("Room 4", 200.0, true, listOf("Wi-Fi", "Gym"))
         )
     }
-
->>>>>>> Stashed changes
 }
