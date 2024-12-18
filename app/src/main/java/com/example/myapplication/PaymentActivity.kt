@@ -16,6 +16,7 @@ class PaymentActivity : AppCompatActivity(), AddCardFragment.OnCardAddedListener
     private lateinit var listViewCards: ListView
     private lateinit var btnAddCard: Button
     private lateinit var btnPay: Button
+    private lateinit var ivQRCode: ImageView
 
     private val firestore by lazy { FirebaseFirestore.getInstance() }
     private val cardList = mutableListOf<String>()
@@ -30,6 +31,7 @@ class PaymentActivity : AppCompatActivity(), AddCardFragment.OnCardAddedListener
         listViewCards = findViewById(R.id.listViewCards)
         btnAddCard = findViewById(R.id.btnAddCard)
         btnPay = findViewById(R.id.btnPay)
+        ivQRCode = findViewById(R.id.ivQRCode) //
 
         val totalPrice = intent.getDoubleExtra("TOTAL_PRICE", 0.0)
         tvTotalPrice.text = "Total Price: ${formatCurrency(totalPrice)}"
@@ -56,15 +58,28 @@ class PaymentActivity : AppCompatActivity(), AddCardFragment.OnCardAddedListener
             startActivity(intent)
         }
 
-        // Lắng nghe sự thay đổi phương thức thanh toán để ẩn/hiện nút Add Card
         spinnerPaymentMethod.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedMethod = spinnerPaymentMethod.selectedItem.toString()
-                btnAddCard.visibility = if (selectedMethod == "Card") View.VISIBLE else View.GONE
+                when (selectedMethod) {
+                    "Card" -> {
+                        btnAddCard.visibility = View.VISIBLE
+                        ivQRCode.visibility = View.GONE
+                    }
+                    "Cash" -> {
+                        btnAddCard.visibility = View.GONE
+                        ivQRCode.visibility = View.GONE
+                    }
+                    "Bank Transfer" -> {
+                        btnAddCard.visibility = View.GONE
+                        ivQRCode.visibility = View.VISIBLE
+                    }
+                }
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>) {
                 btnAddCard.visibility = View.GONE
+                ivQRCode.visibility = View.GONE
             }
         }
     }
